@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Rejestr_faktur
 {
-    public partial class Form1 : Form
+    public partial class Rejestr : Form
     {
-        public Form1()
+        public Rejestr()
         {
             InitializeComponent();
         }
