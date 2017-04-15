@@ -28,46 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView = new System.Windows.Forms.ListView();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.objectListView = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView)).BeginInit();
             this.SuspendLayout();
             // 
-            // listView
+            // objectListView
             // 
-            this.listView.FullRowSelect = true;
-            this.listView.LabelWrap = false;
-            this.listView.Location = new System.Drawing.Point(24, 12);
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(656, 386);
-            this.listView.TabIndex = 0;
-            this.listView.UseCompatibleStateImageBehavior = false;
+            this.objectListView.AllColumns.Add(this.olvColumn1);
+            this.objectListView.AllColumns.Add(this.olvColumn2);
+            this.objectListView.AllColumns.Add(this.olvColumn3);
+            this.objectListView.AllColumns.Add(this.olvColumn4);
+            this.objectListView.AllColumns.Add(this.olvColumn5);
+            this.objectListView.CellEditUseWholeCell = false;
+            this.objectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn2,
+            this.olvColumn3,
+            this.olvColumn4,
+            this.olvColumn5});
+            this.objectListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.objectListView.FullRowSelect = true;
+            this.objectListView.Location = new System.Drawing.Point(541, 39);
+            this.objectListView.Name = "objectListView";
+            this.objectListView.ShowGroups = false;
+            this.objectListView.Size = new System.Drawing.Size(671, 405);
+            this.objectListView.TabIndex = 2;
+            this.objectListView.UseCompatibleStateImageBehavior = false;
+            this.objectListView.View = System.Windows.Forms.View.Details;
             // 
-            // textBox
+            // olvColumn1
             // 
-            this.textBox.Location = new System.Drawing.Point(686, 63);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(460, 20);
-            this.textBox.TabIndex = 1;
+            this.olvColumn1.AspectName = "CompanyName";
+            this.olvColumn1.Text = "Company Name";
+            this.olvColumn1.Width = 120;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "ContactName";
+            this.olvColumn2.Text = "Contact Name";
+            this.olvColumn2.Width = 120;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Address";
+            this.olvColumn3.Text = "Address";
+            this.olvColumn3.Width = 150;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "City";
+            this.olvColumn4.Text = "City";
+            this.olvColumn4.Width = 100;
+            // 
+            // olvColumn5
+            // 
+            this.olvColumn5.AspectName = "Country";
+            this.olvColumn5.Text = "Country";
+            this.olvColumn5.Width = 100;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1224, 486);
-            this.Controls.Add(this.textBox);
-            this.Controls.Add(this.listView);
+            this.Controls.Add(this.objectListView);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.TextBox textBox;
+        private BrightIdeasSoftware.ObjectListView objectListView;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
+        private BrightIdeasSoftware.OLVColumn olvColumn5;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
     }
 }
 
