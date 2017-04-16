@@ -11,6 +11,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 
 
+
 namespace Linq
 {
     public partial class Form1 : Form
@@ -57,6 +58,30 @@ namespace Linq
             public string Unit { get; set; }
             public string PKWiU { get; set; }
             public double Tax { get; set; }
+
+            //public override string ToString()
+            //{
+            //    return comCompanyName+ " " +comAddress + " " + comPostalCode + " " + comCity + " " + cusCompanyName + " " + ContactName + " " + cusAddress + " " + cusCity + " " + cusPostalCode + " " + NIP + " " + ProductName + " " + UnitPrice +" " + Unit + " " + PKWiU +" " +Tax;
+            //}
+        }
+
+
+
+        class ComboBoxItems
+        {
+            public ComboBoxItems(int id, string name)
+            {
+                this.id = id;
+                this.name = name;
+            }
+
+            public int id { get; set; }
+            public string name { get; set; }
+
+            public override string ToString()
+            {
+                return id + " " + name;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -99,6 +124,7 @@ namespace Linq
             {
                 list.Add(new Invoice(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), Double.Parse(row[11].ToString()), row[12].ToString(), row[13].ToString(), Double.Parse(row[14].ToString())));
             }
+            
             objectListView.SetObjects(list);
 
             //ListViewItem lvi = new ListViewItem(q.CompanyName);
@@ -110,9 +136,46 @@ namespace Linq
 
             //listView.Items.Add(lvi);
 
+           
+
+
+
+            comboBox.Items.Add(new ComboBoxItems(1, "A"));
+            comboBox.Items.Add(new ComboBoxItems(2, "B"));
+            comboBox.Items.Add(new ComboBoxItems(3, "C"));
 
 
         }
-      }
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            label1.Text = ((ComboBoxItems)comboBox.SelectedItem).id.ToString();
+            label2.Text = ((ComboBoxItems)comboBox.SelectedItem).name;
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox2.Text = (Double.Parse(textBox1.Text)*1.23).ToString();
+            }
+
+            catch
+            {
+                if (textBox1.Text == "")
+                {
+                    textBox2.Text = "";
+                }
+            }
+                
+        }
+
+        private void objectListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox1.Text = ((Invoice)objectListView.SelectedObject).UnitPrice.ToString();
+        }
+    }
     
 }
