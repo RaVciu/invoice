@@ -136,9 +136,6 @@ namespace Linq
 
             //listView.Items.Add(lvi);
 
-           
-
-
 
             comboBox.Items.Add(new ComboBoxItems(1, "A"));
             comboBox.Items.Add(new ComboBoxItems(2, "B"));

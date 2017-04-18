@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Rejestr faktur")]
+[assembly: AssemblyTitle("Rejestr_Faktur")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rejestr faktur")]
+[assembly: AssemblyProduct("Rejestr_Faktur")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f0a39710-213b-4307-925e-a152915e625c")]
+[assembly: Guid("e8e5de70-ca82-4bf8-b038-726e56f3536c")]
 
 // Version information for an assembly consists of the following four values:
 //
