@@ -69,6 +69,7 @@
     <Compile Include="Rejestr.Designer.cs">
       <DependentUpon>Rejestr.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Rejestr.resx">
       <DependentUpon>Rejestr.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,7 +95,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->

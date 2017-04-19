@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rejestr));
             this.objectListViewInvoices = new BrightIdeasSoftware.ObjectListView();
             this.InvoiceNo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.comCity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -37,15 +38,22 @@
             this.cusCompanyName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cusNIP = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cusAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.PaymentMethod = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.Sum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.cusCity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cusPostalCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.cusCity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cusCountry = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.PaymentMethod = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.PaymentDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.Sum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.label1 = new System.Windows.Forms.Label();
             this.labelGrossValue = new System.Windows.Forms.Label();
+            this.groupBoxSearch = new Telerik.WinControls.UI.RadGroupBox();
+            this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.textBoxSearch = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).BeginInit();
+            this.groupBoxSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,12 +91,13 @@
             this.Sum});
             this.objectListViewInvoices.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListViewInvoices.FullRowSelect = true;
-            this.objectListViewInvoices.Location = new System.Drawing.Point(370, 59);
+            this.objectListViewInvoices.Location = new System.Drawing.Point(370, 93);
             this.objectListViewInvoices.Name = "objectListViewInvoices";
             this.objectListViewInvoices.ShowGroups = false;
-            this.objectListViewInvoices.Size = new System.Drawing.Size(998, 551);
+            this.objectListViewInvoices.Size = new System.Drawing.Size(998, 517);
             this.objectListViewInvoices.TabIndex = 0;
             this.objectListViewInvoices.UseCompatibleStateImageBehavior = false;
+            this.objectListViewInvoices.UseFiltering = true;
             this.objectListViewInvoices.View = System.Windows.Forms.View.Details;
             // 
             // InvoiceNo
@@ -147,19 +156,12 @@
             this.cusAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cusAddress.Width = 120;
             // 
-            // PaymentMethod
+            // cusPostalCode
             // 
-            this.PaymentMethod.AspectName = "PaymentMethod";
-            this.PaymentMethod.Text = "Forma Płatności";
-            this.PaymentMethod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PaymentMethod.Width = 90;
-            // 
-            // Sum
-            // 
-            this.Sum.AspectName = "Sum";
-            this.Sum.Text = "Do zapłaty [zł]";
-            this.Sum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Sum.Width = 90;
+            this.cusPostalCode.AspectName = "cusPostalCode";
+            this.cusPostalCode.Text = "Kod klienta";
+            this.cusPostalCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cusPostalCode.Width = 90;
             // 
             // cusCity
             // 
@@ -168,13 +170,6 @@
             this.cusCity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cusCity.Width = 90;
             // 
-            // cusPostalCode
-            // 
-            this.cusPostalCode.AspectName = "cusPostalCode";
-            this.cusPostalCode.Text = "Kod klienta";
-            this.cusPostalCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cusPostalCode.Width = 90;
-            // 
             // cusCountry
             // 
             this.cusCountry.AspectName = "cusCountry";
@@ -182,12 +177,26 @@
             this.cusCountry.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cusCountry.Width = 90;
             // 
+            // PaymentMethod
+            // 
+            this.PaymentMethod.AspectName = "PaymentMethod";
+            this.PaymentMethod.Text = "Forma Płatności";
+            this.PaymentMethod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PaymentMethod.Width = 90;
+            // 
             // PaymentDate
             // 
             this.PaymentDate.AspectName = "PaymentDate";
             this.PaymentDate.Text = "Termin płatności";
             this.PaymentDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.PaymentDate.Width = 100;
+            // 
+            // Sum
+            // 
+            this.Sum.AspectName = "Sum";
+            this.Sum.Text = "Do zapłaty [zł]";
+            this.Sum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Sum.Width = 90;
             // 
             // label1
             // 
@@ -209,11 +218,52 @@
             this.labelGrossValue.TabIndex = 2;
             this.labelGrossValue.Text = "label2";
             // 
+            // groupBoxSearch
+            // 
+            this.groupBoxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.groupBoxSearch.Controls.Add(this.comboBoxSearchBy);
+            this.groupBoxSearch.Controls.Add(this.buttonSearch);
+            this.groupBoxSearch.Controls.Add(this.textBoxSearch);
+            this.groupBoxSearch.HeaderImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.groupBoxSearch.HeaderText = "Szukaj";
+            this.groupBoxSearch.Location = new System.Drawing.Point(370, 42);
+            this.groupBoxSearch.Name = "groupBoxSearch";
+            this.groupBoxSearch.Size = new System.Drawing.Size(412, 45);
+            this.groupBoxSearch.TabIndex = 4;
+            this.groupBoxSearch.Text = "Szukaj";
+            // 
+            // comboBoxSearchBy
+            // 
+            this.comboBoxSearchBy.FormattingEnabled = true;
+            this.comboBoxSearchBy.Location = new System.Drawing.Point(15, 20);
+            this.comboBoxSearchBy.Name = "comboBoxSearchBy";
+            this.comboBoxSearchBy.Size = new System.Drawing.Size(156, 21);
+            this.comboBoxSearchBy.TabIndex = 3;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Image = ((System.Drawing.Image)(resources.GetObject("buttonSearch.Image")));
+            this.buttonSearch.Location = new System.Drawing.Point(377, 20);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(20, 20);
+            this.buttonSearch.TabIndex = 2;
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(177, 20);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(154, 20);
+            this.textBoxSearch.TabIndex = 1;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
             // Rejestr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 651);
+            this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.labelGrossValue);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.objectListViewInvoices);
@@ -225,6 +275,10 @@
             this.Text = "Rejestr faktur";
             this.Load += new System.EventHandler(this.Rejestr_Load);
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).EndInit();
+            this.groupBoxSearch.ResumeLayout(false);
+            this.groupBoxSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -250,5 +304,9 @@
         private BrightIdeasSoftware.OLVColumn PaymentDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelGrossValue;
+        private Telerik.WinControls.UI.RadGroupBox groupBoxSearch;
+        private System.Windows.Forms.Button buttonSearch;
+        private Telerik.WinControls.UI.RadTextBox textBoxSearch;
+        private System.Windows.Forms.ComboBox comboBoxSearchBy;
     }
 }

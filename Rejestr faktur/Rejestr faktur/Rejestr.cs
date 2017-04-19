@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Configuration;
-using System.Globalization;
+using BrightIdeasSoftware;
 
 namespace Rejestr_Faktur
 {
@@ -24,9 +24,9 @@ namespace Rejestr_Faktur
         {
             Reload_objectListViewInvoices();
         }
-
+DataSet ds = new DataSet();
+            List<Invoice> list = new List<Invoice>();
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
-
         public void Reload_objectListViewInvoices()
         {
             string InvoiceQuery = (@"SELECT com.CompanyName, inv.IssuedBy, com.Address, com.City, com.PostalCode, com.Country, com.NIP, com.IBAN, com.BankName, 
@@ -38,10 +38,10 @@ namespace Rejestr_Faktur
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
             SqlDataAdapter da = new SqlDataAdapter(InvoiceQuery, connection);
-            DataSet ds = new DataSet();
+            
             da.Fill(ds);
 
-            List<Invoice> list = new List<Invoice>();
+
             decimal GrossValue = 0;
 
             foreach(DataRow row in ds.Tables[0].Rows)
@@ -59,6 +59,22 @@ namespace Rejestr_Faktur
             }
             objectListViewInvoices.SetObjects(list);
             labelGrossValue.Text = GrossValue.ToString();
+
+            foreach(ColumnHeader col in this.objectListViewInvoices.Columns)
+            {
+                comboBoxSearchBy.Items.Add(col.Text);
+            }
+           
+        }
+        List<Invoice> filteredList = new List<Invoice>();
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            objectListViewInvoices.ModelFilter = TextMatchFilter.Contains(objectListViewInvoices, textBoxSearch.Text);
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
