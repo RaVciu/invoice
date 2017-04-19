@@ -14,7 +14,7 @@ namespace Rejestr_Faktur
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Rejestr());
+            Application.Run(new Register());
         }
     }
 }

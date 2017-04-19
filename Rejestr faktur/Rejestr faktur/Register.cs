@@ -13,9 +13,9 @@ using BrightIdeasSoftware;
 
 namespace Rejestr_Faktur
 {
-    public partial class Rejestr : Telerik.WinControls.UI.RadForm
+    public partial class Register : Telerik.WinControls.UI.RadForm
     {
-        public Rejestr()
+        public Register()
         {
             InitializeComponent();
         }
@@ -24,8 +24,8 @@ namespace Rejestr_Faktur
         {
             Reload_objectListViewInvoices();
         }
-DataSet ds = new DataSet();
-            List<Invoice> list = new List<Invoice>();
+
+            
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         public void Reload_objectListViewInvoices()
         {
@@ -38,9 +38,9 @@ DataSet ds = new DataSet();
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
             SqlDataAdapter da = new SqlDataAdapter(InvoiceQuery, connection);
-            
+            DataSet ds = new DataSet();
             da.Fill(ds);
-
+            List<Invoice> listOfInvoices = new List<Invoice>();
 
             decimal GrossValue = 0;
 
@@ -53,28 +53,24 @@ DataSet ds = new DataSet();
                 decimal Sum = Decimal.Round(Decimal.Parse(row[20].ToString()), 2);
                 GrossValue += Sum;
 
-                list.Add(new Invoice(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(),
+                listOfInvoices.Add(new Invoice(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(),
                                      row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), row[11].ToString(), row[12].ToString(), row[13].ToString(),
                                      row[14].ToString(), row[15].ToString(), OrderDate.ToString("dd.MM.yyyy"), InvoiceDate.ToString("dd.MM.yyyy"), PaymentDate.ToString("dd.MM.yyyy"), row[19].ToString(), Sum));
             }
-            objectListViewInvoices.SetObjects(list);
+            objectListViewInvoices.SetObjects(listOfInvoices);
             labelGrossValue.Text = GrossValue.ToString();
 
-            foreach(ColumnHeader col in this.objectListViewInvoices.Columns)
-            {
-                comboBoxSearchBy.Items.Add(col.Text);
-            }
            
         }
-        List<Invoice> filteredList = new List<Invoice>();
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             objectListViewInvoices.ModelFilter = TextMatchFilter.Contains(objectListViewInvoices, textBoxSearch.Text);
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void radButtonCustomers_Click(object sender, EventArgs e)
         {
-
+            Customers customers = new Customers();
+            customers.Show();
         }
     }
 }

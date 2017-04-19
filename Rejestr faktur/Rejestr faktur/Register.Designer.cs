@@ -1,6 +1,6 @@
 ﻿namespace Rejestr_Faktur
 {
-    partial class Rejestr
+    partial class Register
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rejestr));
             this.objectListViewInvoices = new BrightIdeasSoftware.ObjectListView();
             this.InvoiceNo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.comCity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -47,13 +46,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelGrossValue = new System.Windows.Forms.Label();
             this.groupBoxSearch = new Telerik.WinControls.UI.RadGroupBox();
-            this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxSearch = new Telerik.WinControls.UI.RadTextBox();
+            this.radButtonCustomers = new Telerik.WinControls.UI.RadButton();
+            this.radButtonProducts = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustomers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -221,53 +222,52 @@
             // groupBoxSearch
             // 
             this.groupBoxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxSearch.Controls.Add(this.comboBoxSearchBy);
-            this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Controls.Add(this.textBoxSearch);
             this.groupBoxSearch.HeaderImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.groupBoxSearch.HeaderText = "Szukaj";
             this.groupBoxSearch.Location = new System.Drawing.Point(370, 42);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Size = new System.Drawing.Size(412, 45);
+            this.groupBoxSearch.Size = new System.Drawing.Size(168, 45);
             this.groupBoxSearch.TabIndex = 4;
             this.groupBoxSearch.Text = "Szukaj";
             // 
-            // comboBoxSearchBy
-            // 
-            this.comboBoxSearchBy.FormattingEnabled = true;
-            this.comboBoxSearchBy.Location = new System.Drawing.Point(15, 20);
-            this.comboBoxSearchBy.Name = "comboBoxSearchBy";
-            this.comboBoxSearchBy.Size = new System.Drawing.Size(156, 21);
-            this.comboBoxSearchBy.TabIndex = 3;
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Image = ((System.Drawing.Image)(resources.GetObject("buttonSearch.Image")));
-            this.buttonSearch.Location = new System.Drawing.Point(377, 20);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(20, 20);
-            this.buttonSearch.TabIndex = 2;
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(177, 20);
+            this.textBoxSearch.Location = new System.Drawing.Point(5, 20);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(154, 20);
             this.textBoxSearch.TabIndex = 1;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
-            // Rejestr
+            // radButtonCustomers
+            // 
+            this.radButtonCustomers.Location = new System.Drawing.Point(553, 42);
+            this.radButtonCustomers.Name = "radButtonCustomers";
+            this.radButtonCustomers.Size = new System.Drawing.Size(212, 40);
+            this.radButtonCustomers.TabIndex = 6;
+            this.radButtonCustomers.Text = "Klienci";
+            this.radButtonCustomers.Click += new System.EventHandler(this.radButtonCustomers_Click);
+            // 
+            // radButtonProducts
+            // 
+            this.radButtonProducts.Location = new System.Drawing.Point(789, 42);
+            this.radButtonProducts.Name = "radButtonProducts";
+            this.radButtonProducts.Size = new System.Drawing.Size(212, 40);
+            this.radButtonProducts.TabIndex = 7;
+            this.radButtonProducts.Text = "Produkty";
+            // 
+            // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 651);
+            this.Controls.Add(this.radButtonProducts);
+            this.Controls.Add(this.radButtonCustomers);
             this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.labelGrossValue);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.objectListViewInvoices);
-            this.Name = "Rejestr";
+            this.Name = "Register";
             // 
             // 
             // 
@@ -279,6 +279,8 @@
             this.groupBoxSearch.ResumeLayout(false);
             this.groupBoxSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustomers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -305,8 +307,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelGrossValue;
         private Telerik.WinControls.UI.RadGroupBox groupBoxSearch;
-        private System.Windows.Forms.Button buttonSearch;
         private Telerik.WinControls.UI.RadTextBox textBoxSearch;
-        private System.Windows.Forms.ComboBox comboBoxSearchBy;
+        private Telerik.WinControls.UI.RadButton radButtonCustomers;
+        private Telerik.WinControls.UI.RadButton radButtonProducts;
     }
 }
