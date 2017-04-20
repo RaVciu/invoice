@@ -40,7 +40,6 @@ namespace Rejestr_Faktur
             connection.Open();
             string AddCustomerQuery = "INSERT INTO Customers VALUES('"+CompanyName+"', '"+ContactName+"', '"+NIP+"', '"+Address+"', '"+City+"', '"+PostalCode+"', '"+IBAN+"', '"+PhoneNumber+"', '"+Email+"', '"+WWW+"')";
             SqlCommand command = new SqlCommand(AddCustomerQuery, connection);
-         //   command.Parameters.Add(
             command.ExecuteNonQuery();
             connection.Close();
            

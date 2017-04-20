@@ -75,6 +75,7 @@
             this.radButtonEdit.Size = new System.Drawing.Size(110, 24);
             this.radButtonEdit.TabIndex = 2;
             this.radButtonEdit.Text = "Zmień";
+            this.radButtonEdit.Click += new System.EventHandler(this.radButtonEdit_Click);
             // 
             // radButtonDelete
             // 

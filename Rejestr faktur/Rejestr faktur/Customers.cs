@@ -27,7 +27,7 @@ namespace Rejestr_Faktur
         private void Reload_objectListViewCustomers()
         {
             string InvoiceQuery = (@"SELECT CompanyName, ContactName, NIP, Address, City, PostalCode, IBAN,
-                                            PhoneNumber, Email, WWW
+                                            PhoneNumber, Email, WWW, CustomerID
                                     FROM Customers");
 
             SqlConnection connection = new SqlConnection(ConnectionString);
@@ -40,7 +40,7 @@ namespace Rejestr_Faktur
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 listOfCustomers.Add(new Customer(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(),
-                                    row[8].ToString(), row[9].ToString()));
+                                    row[8].ToString(), row[9].ToString(), Int16.Parse(row[10].ToString())));
             }
             Generator.GenerateColumns(objectListViewCustomers, typeof(Customer), true);
             objectListViewCustomers.SetObjects(listOfCustomers);
@@ -71,6 +71,28 @@ namespace Rejestr_Faktur
                 radButtonEdit.Enabled = false;
                 radButtonDelete.Enabled = false;
             }
+
+        }
+
+        private void radButtonEdit_Click(object sender, EventArgs e)
+        {
+            EditCustomer edit = new EditCustomer();
+            try
+            {
+                edit.CompanyName = ((Customer)objectListViewCustomers.SelectedObject).CompanyName;
+                edit.ContactName = ((Customer)objectListViewCustomers.SelectedObject).ContactName;
+                edit.NIP = ((Customer)objectListViewCustomers.SelectedObject).NIP;
+                edit.Address = ((Customer)objectListViewCustomers.SelectedObject).Address;
+                edit.City = ((Customer)objectListViewCustomers.SelectedObject).City;
+                edit.PostalCode = ((Customer)objectListViewCustomers.SelectedObject).PostalCode;
+                edit.IBAN = ((Customer)objectListViewCustomers.SelectedObject).IBAN;
+                edit.PhoneNumber = ((Customer)objectListViewCustomers.SelectedObject).PhoneNumber;
+                edit.Email = ((Customer)objectListViewCustomers.SelectedObject).Email;
+                edit.WWW = ((Customer)objectListViewCustomers.SelectedObject).WWW;
+                edit.CustomerID = ((Customer)objectListViewCustomers.SelectedObject).CustomerID;
+                edit.Show();
+            }
+            catch { }
 
         }
     }

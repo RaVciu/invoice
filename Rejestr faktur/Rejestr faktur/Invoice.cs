@@ -32,13 +32,6 @@ namespace Rejestr_Faktur
             this.InvoiceDate = InvoiceDate;
             this.PaymentDate = PaymentDate;
             this.PaymentMethod = PaymentMethod;
-            //this.ProductName = ProductName;
-            //this.UnitPrice = UnitPrice;
-            //this.Unit = Unit;
-            //this.PKWiU = PKWiU;
-            //this.Tax = Tax;
-            //this.Quantity = Quantity;
-            //this.Discount = Discount;
             this.Sum = Sum;
         }
 
@@ -62,13 +55,6 @@ namespace Rejestr_Faktur
         public string InvoiceDate { get; set; }
         public string PaymentDate { get; set; }
         public string PaymentMethod { get; set; }
-        //public string ProductName { get; set; }
-        //public double UnitPrice { get; set; }
-        //public string Unit { get; set; }
-        //public string PKWiU { get; set; }
-        //public double Tax { get; set; }
-        //public int Quantity { get; set; }
-        //public double Discount { get; set; }
         public decimal Sum { get; set; }
     }
 }

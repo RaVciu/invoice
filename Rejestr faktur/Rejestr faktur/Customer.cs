@@ -10,7 +10,7 @@ namespace Rejestr_Faktur
     class Customer
     {
         public  Customer(string CompanyName, string ContactName, string NIP, string Address, string City, string PostalCode,
-                         string IBAN, string PhoneNumber, string Email, string WWW)
+                         string IBAN, string PhoneNumber, string Email, string WWW, int CustomerID)
         {
             this.CompanyName = CompanyName;
             this.ContactName = ContactName;
@@ -22,6 +22,7 @@ namespace Rejestr_Faktur
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
             this.WWW = WWW;
+            this.CustomerID = CustomerID;
         }
 
         [OLVColumn ("Nazwa", Width = 100)]
@@ -53,5 +54,8 @@ namespace Rejestr_Faktur
 
         [OLVColumn(Width = 100)]
         public string WWW { get; set; }
+
+        [OLVColumn (IsVisible = false)]
+        public int CustomerID { get; set; }
     }
 }
