@@ -24,9 +24,9 @@ namespace Rejestr_Faktur
             Reload_objectListViewCustomers();
         }
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
-        public void Reload_objectListViewCustomers()
+        private void Reload_objectListViewCustomers()
         {
-            string InvoiceQuery = (@"SELECT CompanyName, ContactName, NIP, Address, City, PostalCode, Country, IBAN,
+            string InvoiceQuery = (@"SELECT CompanyName, ContactName, NIP, Address, City, PostalCode, IBAN,
                                             PhoneNumber, Email, WWW
                                     FROM Customers");
 
@@ -40,13 +40,38 @@ namespace Rejestr_Faktur
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 listOfCustomers.Add(new Customer(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(),
-                                    row[8].ToString(), row[9].ToString(), row[10].ToString()));
+                                    row[8].ToString(), row[9].ToString()));
             }
             Generator.GenerateColumns(objectListViewCustomers, typeof(Customer), true);
             objectListViewCustomers.SetObjects(listOfCustomers);
 
         }
 
+        private void radTextBoxSearchCustomers_TextChanged(object sender, EventArgs e)
+        {
+            objectListViewCustomers.ModelFilter = TextMatchFilter.Contains(objectListViewCustomers, radTextBoxSearchCustomers.Text);
+        }
 
+        private void radButtonAdd_Click(object sender, EventArgs e)
+        {
+            AddCustomer_cs add = new AddCustomer_cs();
+            add.Show();
+        }
+
+        private void objectListViewCustomers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (objectListViewCustomers.SelectedItems.Count > 0)
+            {
+                radButtonEdit.Enabled = true;
+                radButtonDelete.Enabled = true;
+            }
+
+            else
+            {
+                radButtonEdit.Enabled = false;
+                radButtonDelete.Enabled = false;
+            }
+
+        }
     }
 }
