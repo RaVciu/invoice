@@ -48,5 +48,10 @@ namespace Rejestr_Faktur
 
 
         }
+
+        private void radButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

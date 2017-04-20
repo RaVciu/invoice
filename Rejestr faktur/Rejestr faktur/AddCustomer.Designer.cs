@@ -276,6 +276,7 @@
             this.radButtonClose.Size = new System.Drawing.Size(110, 24);
             this.radButtonClose.TabIndex = 10;
             this.radButtonClose.Text = "Anuluj";
+            this.radButtonClose.Click += new System.EventHandler(this.radButtonClose_Click);
             // 
             // AddCustomer_cs
             // 

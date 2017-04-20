@@ -18,6 +18,12 @@ namespace Rejestr_Faktur
             InitializeComponent();
         }
         public string CompanyName, ContactName, NIP, Address, City, PostalCode, IBAN, PhoneNumber, Email, WWW;
+
+        private void radButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         public int CustomerID;
 
         private void EditCustomer_Load(object sender, EventArgs e)

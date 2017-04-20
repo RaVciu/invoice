@@ -57,6 +57,7 @@
             this.objectListViewCustomers.UseFiltering = true;
             this.objectListViewCustomers.View = System.Windows.Forms.View.Details;
             this.objectListViewCustomers.SelectedIndexChanged += new System.EventHandler(this.objectListViewCustomers_SelectedIndexChanged);
+            this.objectListViewCustomers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListViewCustomers_MouseDoubleClick);
             // 
             // radButtonAdd
             // 

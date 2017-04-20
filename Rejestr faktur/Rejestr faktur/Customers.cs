@@ -22,6 +22,8 @@ namespace Rejestr_Faktur
         private void Customers_Load(object sender, EventArgs e)
         {
             Reload_objectListViewCustomers();
+            radButtonEdit.Enabled = false;
+            radButtonDelete.Enabled = false;
         }
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         private void Reload_objectListViewCustomers()
@@ -94,6 +96,11 @@ namespace Rejestr_Faktur
             }
             catch { }
 
+        }
+
+        private void objectListViewCustomers_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            radButtonEdit_Click(sender, e);
         }
     }
 }
