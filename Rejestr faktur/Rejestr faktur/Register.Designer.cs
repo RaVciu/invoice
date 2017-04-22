@@ -225,9 +225,9 @@
             this.groupBoxSearch.Controls.Add(this.textBoxSearch);
             this.groupBoxSearch.HeaderImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.groupBoxSearch.HeaderText = "Szukaj";
-            this.groupBoxSearch.Location = new System.Drawing.Point(370, 42);
+            this.groupBoxSearch.Location = new System.Drawing.Point(1139, 42);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Size = new System.Drawing.Size(168, 45);
+            this.groupBoxSearch.Size = new System.Drawing.Size(229, 45);
             this.groupBoxSearch.TabIndex = 4;
             this.groupBoxSearch.Text = "Szukaj";
             // 
@@ -235,13 +235,13 @@
             // 
             this.textBoxSearch.Location = new System.Drawing.Point(5, 20);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(154, 20);
+            this.textBoxSearch.Size = new System.Drawing.Size(219, 20);
             this.textBoxSearch.TabIndex = 1;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // radButtonCustomers
             // 
-            this.radButtonCustomers.Location = new System.Drawing.Point(553, 42);
+            this.radButtonCustomers.Location = new System.Drawing.Point(370, 42);
             this.radButtonCustomers.Name = "radButtonCustomers";
             this.radButtonCustomers.Size = new System.Drawing.Size(212, 40);
             this.radButtonCustomers.TabIndex = 6;
@@ -250,11 +250,12 @@
             // 
             // radButtonProducts
             // 
-            this.radButtonProducts.Location = new System.Drawing.Point(789, 42);
+            this.radButtonProducts.Location = new System.Drawing.Point(606, 42);
             this.radButtonProducts.Name = "radButtonProducts";
             this.radButtonProducts.Size = new System.Drawing.Size(212, 40);
             this.radButtonProducts.TabIndex = 7;
             this.radButtonProducts.Text = "Produkty";
+            this.radButtonProducts.Click += new System.EventHandler(this.radButtonProducts_Click);
             // 
             // Register
             // 

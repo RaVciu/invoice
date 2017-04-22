@@ -53,5 +53,6 @@ namespace Rejestr_Faktur
         {
             this.Close();
         }
+
     }
 }

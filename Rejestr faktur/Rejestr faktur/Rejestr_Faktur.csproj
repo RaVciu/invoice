@@ -68,6 +68,12 @@
     <Compile Include="AddCustomer.Designer.cs">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs" />
     <Compile Include="Customers.cs">
       <SubType>Form</SubType>
@@ -81,7 +87,20 @@
     <Compile Include="EditCustomer.Designer.cs">
       <DependentUpon>EditCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProduct.Designer.cs">
+      <DependentUpon>EditProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invoice.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products.Designer.cs">
+      <DependentUpon>Products.cs</DependentUpon>
+    </Compile>
     <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,11 +111,20 @@
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditCustomer.resx">
       <DependentUpon>EditCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProduct.resx">
+      <DependentUpon>EditProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products.resx">
+      <DependentUpon>Products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Register.resx">

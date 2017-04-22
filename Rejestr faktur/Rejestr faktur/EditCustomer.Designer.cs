@@ -84,7 +84,7 @@
             this.radButtonClose.Location = new System.Drawing.Point(257, 347);
             this.radButtonClose.Name = "radButtonClose";
             this.radButtonClose.Size = new System.Drawing.Size(110, 24);
-            this.radButtonClose.TabIndex = 14;
+            this.radButtonClose.TabIndex = 11;
             this.radButtonClose.Text = "Anuluj";
             this.radButtonClose.Click += new System.EventHandler(this.radButtonClose_Click);
             // 
@@ -93,7 +93,7 @@
             this.radButtonEdit.Location = new System.Drawing.Point(109, 347);
             this.radButtonEdit.Name = "radButtonEdit";
             this.radButtonEdit.Size = new System.Drawing.Size(110, 24);
-            this.radButtonEdit.TabIndex = 13;
+            this.radButtonEdit.TabIndex = 10;
             this.radButtonEdit.Text = "Edytuj";
             this.radButtonEdit.Click += new System.EventHandler(this.radButtonEdit_Click);
             // 
@@ -120,7 +120,7 @@
             this.radTextBoxWWW.Location = new System.Drawing.Point(175, 109);
             this.radTextBoxWWW.Name = "radTextBoxWWW";
             this.radTextBoxWWW.Size = new System.Drawing.Size(212, 20);
-            this.radTextBoxWWW.TabIndex = 11;
+            this.radTextBoxWWW.TabIndex = 9;
             // 
             // radLabelWWW
             // 
@@ -159,21 +159,21 @@
             this.radTextBoxContactName.Location = new System.Drawing.Point(175, 30);
             this.radTextBoxContactName.Name = "radTextBoxContactName";
             this.radTextBoxContactName.Size = new System.Drawing.Size(212, 20);
-            this.radTextBoxContactName.TabIndex = 4;
+            this.radTextBoxContactName.TabIndex = 6;
             // 
             // radTextBoxPhoneNumber
             // 
             this.radTextBoxPhoneNumber.Location = new System.Drawing.Point(175, 56);
             this.radTextBoxPhoneNumber.Name = "radTextBoxPhoneNumber";
             this.radTextBoxPhoneNumber.Size = new System.Drawing.Size(212, 20);
-            this.radTextBoxPhoneNumber.TabIndex = 5;
+            this.radTextBoxPhoneNumber.TabIndex = 7;
             // 
             // radTextBoxEmail
             // 
             this.radTextBoxEmail.Location = new System.Drawing.Point(175, 82);
             this.radTextBoxEmail.Name = "radTextBoxEmail";
             this.radTextBoxEmail.Size = new System.Drawing.Size(212, 20);
-            this.radTextBoxEmail.TabIndex = 6;
+            this.radTextBoxEmail.TabIndex = 8;
             // 
             // radGroupBoxCustomerDetails
             // 
@@ -209,14 +209,14 @@
             this.radTextBoxIBAN.Location = new System.Drawing.Point(175, 132);
             this.radTextBoxIBAN.Name = "radTextBoxIBAN";
             this.radTextBoxIBAN.Size = new System.Drawing.Size(212, 20);
-            this.radTextBoxIBAN.TabIndex = 8;
+            this.radTextBoxIBAN.TabIndex = 5;
             // 
             // radTextBoxPostalCode
             // 
             this.radTextBoxPostalCode.Location = new System.Drawing.Point(175, 105);
             this.radTextBoxPostalCode.Name = "radTextBoxPostalCode";
             this.radTextBoxPostalCode.Size = new System.Drawing.Size(73, 20);
-            this.radTextBoxPostalCode.TabIndex = 7;
+            this.radTextBoxPostalCode.TabIndex = 3;
             // 
             // radLabelCodeCity
             // 
@@ -276,7 +276,7 @@
             this.radTextBoxCity.Location = new System.Drawing.Point(254, 106);
             this.radTextBoxCity.Name = "radTextBoxCity";
             this.radTextBoxCity.Size = new System.Drawing.Size(132, 20);
-            this.radTextBoxCity.TabIndex = 3;
+            this.radTextBoxCity.TabIndex = 4;
             // 
             // EditCustomer
             // 

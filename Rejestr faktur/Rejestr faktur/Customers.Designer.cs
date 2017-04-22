@@ -86,6 +86,7 @@
             this.radButtonDelete.Size = new System.Drawing.Size(110, 24);
             this.radButtonDelete.TabIndex = 3;
             this.radButtonDelete.Text = "Usuń";
+            this.radButtonDelete.Click += new System.EventHandler(this.radButtonDelete_Click);
             // 
             // radTextBoxSearchCustomers
             // 

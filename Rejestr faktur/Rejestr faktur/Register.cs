@@ -72,5 +72,11 @@ namespace Rejestr_Faktur
             Customers customers = new Customers();
             customers.Show();
         }
+
+        private void radButtonProducts_Click(object sender, EventArgs e)
+        {
+            Products products = new Products();
+            products.Show();
+        }
     }
 }

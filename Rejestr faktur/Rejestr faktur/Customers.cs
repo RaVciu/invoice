@@ -102,5 +102,16 @@ namespace Rejestr_Faktur
         {
             radButtonEdit_Click(sender, e);
         }
+
+        private void radButtonDelete_Click(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            string DeleteCustomerQuery = "DELETE FROM Customers WHERE CustomerID = '"+((Customer)objectListViewCustomers.SelectedObject).CustomerID+"'";
+            SqlCommand command = new SqlCommand(DeleteCustomerQuery, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+            Reload_objectListViewCustomers();
+        }
     }
 }
