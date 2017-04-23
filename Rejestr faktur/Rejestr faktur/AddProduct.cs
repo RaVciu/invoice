@@ -21,18 +21,19 @@ namespace Rejestr_Faktur
         private void radButtonAdd_Click(object sender, EventArgs e)
         {
             string ProductName, PKWiU, Unit;
-            string UnitPrice;
+            string NetUnitPrice, GrossUnitPrice;
             int Tax;
 
             ProductName = radTextBoxProductName.Text;
-            UnitPrice = radTextBoxUnitPrice.Text;
+            NetUnitPrice = radTextBoxNetUnitPrice.Text;
+            GrossUnitPrice = radTextBoxGrossUnitPrice.Text;
             PKWiU = radTextBoxPKWiU.Text;
             Unit = radTextBoxUnit.Text;
             Tax = Int16.Parse(radTextBoxTax.Text);
 
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
-            string AddProductQuery = "INSERT INTO Products VALUES ('"+ProductName+"', "+UnitPrice+", '"+PKWiU+"', '"+Unit+"', "+Tax+")";
+            string AddProductQuery = "INSERT INTO Products VALUES ('"+ProductName+"', "+NetUnitPrice+","+GrossUnitPrice+" ,'"+PKWiU+"', '"+Unit+"', "+Tax+")";
             SqlCommand command = new SqlCommand(AddProductQuery, connection);
             command.ExecuteNonQuery();
             connection.Close();
@@ -42,6 +43,38 @@ namespace Rejestr_Faktur
         private void radButtonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void radTextBoxNetUnitPrice_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                radTextBoxGrossUnitPrice.Text = (Decimal.Parse(radTextBoxNetUnitPrice.Text) * (1 + ((Decimal.Parse(radTextBoxTax.Text)) / 100))).ToString();
+            }
+
+            catch
+            {
+                if(radTextBoxNetUnitPrice.Text == "")
+                {
+                    radTextBoxGrossUnitPrice.Text = "";
+                }
+            }
+        }
+
+        private void radTextBoxGrossUnitPrice_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                radTextBoxNetUnitPrice.Text = (Decimal.Parse(radTextBoxGrossUnitPrice.Text) / (1 + ((Decimal.Parse(radTextBoxTax.Text)) / 100))).ToString();
+            }
+
+            catch
+            {
+                if(radTextBoxGrossUnitPrice.Text == "")
+                {
+                    radTextBoxNetUnitPrice.Text = "";
+                }
+            }
         }
     }
 }

@@ -10,10 +10,11 @@ namespace Rejestr_Faktur
     class Product
     {
 
-        public Product(string ProductName, decimal UnitPrice, string PKWiU, string Unit, int Tax, int ProductID)
+        public Product(string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, int Tax, int ProductID)
         {
             this.ProductName = ProductName;
-            this.UnitPrice = UnitPrice;
+            this.NetUnitPrice = NetUnitPrice;
+            this.GrossUnitPrice = GrossUnitPrice;
             this.PKWiU = PKWiU;
             this.Unit = Unit;
             this.Tax = Tax;
@@ -23,8 +24,11 @@ namespace Rejestr_Faktur
         [OLVColumn ("Nazwa", Width = 100)]
         public string ProductName { get; set; }
 
-        [OLVColumn("Cena", Width = 80, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
-        public decimal UnitPrice { get; set; }
+        [OLVColumn("Cena netto", Width = 80, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
+        public decimal NetUnitPrice { get; set; }
+
+        [OLVColumn("Cena brutto", Width = 80, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
+        public decimal GrossUnitPrice { get; set; }
 
         [OLVColumn("PKWIU", Width = 60, TextAlign = System.Windows.Forms.HorizontalAlignment.Center)]
         public string PKWiU { get; set; }

@@ -29,7 +29,7 @@ namespace Rejestr_Faktur
 
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         private void Reload_objectListViewProducts()
-        {   string ProductsQuery = "SELECT ProductName, UnitPrice, PKWiU, Unit, Tax, ProductID FROM Products";
+        {   string ProductsQuery = "SELECT ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, Tax, ProductID FROM Products";
 
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
@@ -41,7 +41,7 @@ namespace Rejestr_Faktur
             List<Product> listOfProducts = new List<Product>();
             foreach(DataRow row in ds.Tables[0].Rows)
             {
-                listOfProducts.Add(new Product(row[0].ToString(), Decimal.Parse(row[1].ToString()), row[2].ToString(), row[3].ToString(), Int16.Parse(row[4].ToString()), Int16.Parse(row[5].ToString())));
+                listOfProducts.Add(new Product(row[0].ToString(), Decimal.Parse(row[1].ToString()), Decimal.Parse(row[2].ToString()), row[3].ToString(), row[4].ToString(), Int16.Parse(row[5].ToString()), Int16.Parse(row[6].ToString())));
             }
             Generator.GenerateColumns(objectListViewProducts, typeof(Product), true);
             objectListViewProducts.SetObjects(listOfProducts);
@@ -83,7 +83,8 @@ namespace Rejestr_Faktur
             {
                 EditProduct edit = new EditProduct();
                 edit.ProductName = ((Product)objectListViewProducts.SelectedObject).ProductName;
-                edit.UnitPrice = (((Product)objectListViewProducts.SelectedObject).UnitPrice.ToString()).Replace(",", ".");
+                edit.NetUnitPrice = (((Product)objectListViewProducts.SelectedObject).NetUnitPrice.ToString()).Replace(",", ".");
+                edit.GrossUnitPrice = (((Product)objectListViewProducts.SelectedObject).GrossUnitPrice.ToString()).Replace(",", ".");
                 edit.PKWiU = ((Product)objectListViewProducts.SelectedObject).PKWiU;
                 edit.Unit = ((Product)objectListViewProducts.SelectedObject).Unit;
                 edit.Tax = ((Product)objectListViewProducts.SelectedObject).Tax;
