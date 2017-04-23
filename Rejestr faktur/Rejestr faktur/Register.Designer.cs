@@ -39,7 +39,6 @@
             this.cusAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cusPostalCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cusCity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.cusCountry = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.PaymentMethod = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.PaymentDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Sum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -49,12 +48,14 @@
             this.textBoxSearch = new Telerik.WinControls.UI.RadTextBox();
             this.radButtonCustomers = new Telerik.WinControls.UI.RadButton();
             this.radButtonProducts = new Telerik.WinControls.UI.RadButton();
+            this.radButtonAddInvoice = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonAddInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +71,6 @@
             this.objectListViewInvoices.AllColumns.Add(this.cusAddress);
             this.objectListViewInvoices.AllColumns.Add(this.cusPostalCode);
             this.objectListViewInvoices.AllColumns.Add(this.cusCity);
-            this.objectListViewInvoices.AllColumns.Add(this.cusCountry);
             this.objectListViewInvoices.AllColumns.Add(this.PaymentMethod);
             this.objectListViewInvoices.AllColumns.Add(this.PaymentDate);
             this.objectListViewInvoices.AllColumns.Add(this.Sum);
@@ -86,7 +86,6 @@
             this.cusAddress,
             this.cusPostalCode,
             this.cusCity,
-            this.cusCountry,
             this.PaymentMethod,
             this.PaymentDate,
             this.Sum});
@@ -140,7 +139,7 @@
             // 
             this.cusCompanyName.AspectName = "cusCompanyName";
             this.cusCompanyName.Text = "Nazwa klienta";
-            this.cusCompanyName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cusCompanyName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cusCompanyName.Width = 100;
             // 
             // cusNIP
@@ -154,7 +153,7 @@
             // 
             this.cusAddress.AspectName = "cusAddress";
             this.cusAddress.Text = "Adres klienta";
-            this.cusAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cusAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cusAddress.Width = 120;
             // 
             // cusPostalCode
@@ -171,18 +170,11 @@
             this.cusCity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cusCity.Width = 90;
             // 
-            // cusCountry
-            // 
-            this.cusCountry.AspectName = "cusCountry";
-            this.cusCountry.Text = "Kraj klienta";
-            this.cusCountry.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cusCountry.Width = 90;
-            // 
             // PaymentMethod
             // 
             this.PaymentMethod.AspectName = "PaymentMethod";
             this.PaymentMethod.Text = "Forma Płatności";
-            this.PaymentMethod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PaymentMethod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.PaymentMethod.Width = 90;
             // 
             // PaymentDate
@@ -257,11 +249,20 @@
             this.radButtonProducts.Text = "Produkty";
             this.radButtonProducts.Click += new System.EventHandler(this.radButtonProducts_Click);
             // 
+            // radButtonAddInvoice
+            // 
+            this.radButtonAddInvoice.Location = new System.Drawing.Point(841, 42);
+            this.radButtonAddInvoice.Name = "radButtonAddInvoice";
+            this.radButtonAddInvoice.Size = new System.Drawing.Size(212, 40);
+            this.radButtonAddInvoice.TabIndex = 8;
+            this.radButtonAddInvoice.Text = "Dodaj fakturę";
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 651);
+            this.Controls.Add(this.radButtonAddInvoice);
             this.Controls.Add(this.radButtonProducts);
             this.Controls.Add(this.radButtonCustomers);
             this.Controls.Add(this.groupBoxSearch);
@@ -282,6 +283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBoxSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonAddInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,7 +305,6 @@
         private BrightIdeasSoftware.OLVColumn Sum;
         private BrightIdeasSoftware.OLVColumn cusCity;
         private BrightIdeasSoftware.OLVColumn cusPostalCode;
-        private BrightIdeasSoftware.OLVColumn cusCountry;
         private BrightIdeasSoftware.OLVColumn PaymentDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelGrossValue;
@@ -311,5 +312,6 @@
         private Telerik.WinControls.UI.RadTextBox textBoxSearch;
         private Telerik.WinControls.UI.RadButton radButtonCustomers;
         private Telerik.WinControls.UI.RadButton radButtonProducts;
+        private Telerik.WinControls.UI.RadButton radButtonAddInvoice;
     }
 }

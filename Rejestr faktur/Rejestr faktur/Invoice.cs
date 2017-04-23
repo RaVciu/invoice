@@ -8,8 +8,8 @@ namespace Rejestr_Faktur
 {
     class Invoice
     {
-        public Invoice(string comCompanyName, string IssuedBy, string comAddress, string comCity, string comPostalCode, string comCountry, string comNIP, string comIBAN, string comBankName,
-                       string cusCompanyName, string cusNIP, string cusAddress, string cusCity, string cusPostalCode, string cusCountry, string InvoiceNo, string OrderDate,
+        public Invoice(string comCompanyName, string IssuedBy, string comAddress, string comCity, string comPostalCode, string comNIP, string comIBAN, string comBankName,
+                       string cusCompanyName, string cusNIP, string cusAddress, string cusCity, string cusPostalCode, string InvoiceNo, string OrderDate,
                        string InvoiceDate, string PaymentDate, string PaymentMethod, decimal Sum)
         {
             this.comCompanyName = comCompanyName;
@@ -17,7 +17,6 @@ namespace Rejestr_Faktur
             this.comAddress = comAddress;
             this.comCity = comCity;
             this.comPostalCode = comPostalCode;
-            this.comCountry = comCountry;
             this.comNIP = comNIP;
             this.comIBAN = comIBAN;
             this.comBankName = comBankName;
@@ -26,7 +25,6 @@ namespace Rejestr_Faktur
             this.cusAddress = cusAddress;
             this.cusCity = cusCity;
             this.cusPostalCode = cusPostalCode;
-            this.cusCountry = cusCountry;
             this.InvoiceNo = InvoiceNo;
             this.OrderDate = OrderDate;
             this.InvoiceDate = InvoiceDate;
@@ -40,7 +38,6 @@ namespace Rejestr_Faktur
         public string comAddress { get; set; }
         public string comCity { get; set; }
         public string comPostalCode { get; set; }
-        public string comCountry { get; set; }
         public string comNIP { get; set; }
         public string comIBAN { get; set; }
         public string comBankName { get; set; }
@@ -49,7 +46,6 @@ namespace Rejestr_Faktur
         public string cusAddress { get; set; }
         public string cusCity { get; set; }
         public string cusPostalCode { get; set; }
-        public string cusCountry { get; set; }
         public string InvoiceNo { get; set; }
         public string OrderDate { get; set; }
         public string InvoiceDate { get; set; }
