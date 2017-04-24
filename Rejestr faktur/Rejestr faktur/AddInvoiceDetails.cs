@@ -6,53 +6,61 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using BrightIdeasSoftware;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace Rejestr_Faktur
 {
-    public partial class AddProduct : Telerik.WinControls.UI.RadForm
+    public partial class AddInvoiceDetails : Telerik.WinControls.UI.RadForm
     {
-        public AddProduct()
+        public AddInvoiceDetails()
         {
             InitializeComponent();
-        }
-
-        private void AddProduct_Load(object sender, EventArgs e)
-        {
-            radTextBoxTax.Text = "23";
-        }
-
-        public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
-        private void radButtonAdd_Click(object sender, EventArgs e)
-        {
-            string ProductName, PKWiU, Unit;
-            string NetUnitPrice, GrossUnitPrice;
-            int Tax;
-
-            ProductName = radTextBoxProductName.Text;
-            NetUnitPrice = (radTextBoxNetUnitPrice.Text).Replace(",", ".");
-            GrossUnitPrice = (radTextBoxGrossUnitPrice.Text).Replace(",", ".");
-            PKWiU = radTextBoxPKWiU.Text;
-            Unit = radTextBoxUnit.Text;
-            Tax = Int16.Parse(radTextBoxTax.Text);
-
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            string AddProductQuery = "INSERT INTO Products VALUES ('"+ProductName+"', "+NetUnitPrice+","+GrossUnitPrice+" ,'"+PKWiU+"', '"+Unit+"', "+Tax+")";
-            SqlCommand command = new SqlCommand(AddProductQuery, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-            this.Close();
         }
 
         private void radButtonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        public string ProductName, PKWiU, Unit;
+        public int ProductID, Tax, Quantity;
+        public decimal NetUnitPrice, GrossUnitPrice, Discount, NetValue, GrossValue;
+        private void radButtonAdd_Click(object sender, EventArgs e)
+        {
+            ProductName = radTextBoxProductName.Text;
+            PKWiU = radTextBoxPKWiU.Text;
+            Unit = radTextBoxUnit.Text;
+            Tax = Int16.Parse(radTextBoxTax.Text);
+            Quantity = Int16.Parse(radTextBoxQuantity.Text);
+            NetUnitPrice = Convert.ToDecimal(radTextBoxNetUnitPrice.Text);
+            GrossUnitPrice = Decimal.Parse(radTextBoxGrossUnitPrice.Text);
+            if (radTextBoxDiscount.Text != "")
+            {
+                Discount = Decimal.Parse(radTextBoxDiscount.Text);
+            }
+            else { Discount = 0; }
+            decimal DiscountMultiplier = 1 - Discount / 100;
+            GrossValue = Decimal.Round(Decimal.Multiply(Decimal.Multiply(GrossUnitPrice, Quantity), DiscountMultiplier), 2);
+            NetValue = Decimal.Round(Decimal.Multiply(Decimal.Multiply(NetUnitPrice, Quantity), DiscountMultiplier), 2);
+            int Ordinal = ((AddInvoice)this.Owner).objectListViewInvoiceDetails.GetItemCount() + 1;
+            if (labelProductID.Text != "")
+            {
+                ProductID = Int16.Parse(labelProductID.Text);
+            }
+
+            var owner = ((AddInvoice)this.Owner);
+            owner.objectListViewInvoiceDetails.AddObject(new InvoiceDetails(Ordinal, ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, Tax, Quantity, Discount, NetValue, GrossValue));
+            owner.NetValue = NetValue;
+            owner.GrossValue = GrossValue;
+            owner.TaxValue = GrossValue - NetValue;
+            owner.Tax = Tax;
+            owner.objectListViewTaxList.AddObject(new TaxList(Tax, NetValue, GrossValue - NetValue, GrossValue));
+            this.Close();
+        }
+
         bool GrossUnitValue = false;
         bool NetUnitValue = false;
-
         private void radTextBoxNetUnitPrice_Enter(object sender, EventArgs e)
         {
             this.NetUnitValue = true;
@@ -103,6 +111,9 @@ namespace Rejestr_Faktur
             }
         }
 
-
+        private void AddInvoiceDetails_Load(object sender, EventArgs e)
+        {
+            radTextBoxTax.Text = "23";
+        }
     }
 }

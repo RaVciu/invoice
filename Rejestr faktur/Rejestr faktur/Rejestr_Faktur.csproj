@@ -37,9 +37,11 @@
       <HintPath>..\..\Linq\packages\ObjectListView.Official.2.9.1\lib\net20\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +54,7 @@
       <HintPath>..\lib\RCWF\2017.1.221.40.Trial\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2017.1.221.40.Trial\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
@@ -73,6 +76,12 @@
     </Compile>
     <Compile Include="AddInvoice.Designer.cs">
       <DependentUpon>AddInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddInvoiceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddInvoiceDetails.Designer.cs">
+      <DependentUpon>AddInvoiceDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="AddProduct.cs">
       <SubType>Form</SubType>
@@ -100,6 +109,7 @@
       <DependentUpon>EditProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Invoice.cs" />
+    <Compile Include="InvoiceDetails.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Products.cs">
       <SubType>Form</SubType>
@@ -113,12 +123,16 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaxList.cs" />
     <EmbeddedResource Include="AddCustomer.cs.resx" />
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddInvoice.resx">
       <DependentUpon>AddInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddInvoiceDetails.resx">
+      <DependentUpon>AddInvoiceDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>

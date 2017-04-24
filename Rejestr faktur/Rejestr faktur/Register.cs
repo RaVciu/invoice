@@ -77,5 +77,11 @@ namespace Rejestr_Faktur
             Products products = new Products();
             products.Show();
         }
+
+        private void radButtonAddInvoice_Click(object sender, EventArgs e)
+        {
+            AddInvoice AddInv = new AddInvoice();
+            AddInv.Show();
+        }
     }
 }

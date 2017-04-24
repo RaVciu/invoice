@@ -91,6 +91,7 @@
             this.Sum});
             this.objectListViewInvoices.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListViewInvoices.FullRowSelect = true;
+            this.objectListViewInvoices.GridLines = true;
             this.objectListViewInvoices.Location = new System.Drawing.Point(370, 93);
             this.objectListViewInvoices.Name = "objectListViewInvoices";
             this.objectListViewInvoices.ShowGroups = false;
@@ -256,6 +257,7 @@
             this.radButtonAddInvoice.Size = new System.Drawing.Size(212, 40);
             this.radButtonAddInvoice.TabIndex = 8;
             this.radButtonAddInvoice.Text = "Dodaj fakturę";
+            this.radButtonAddInvoice.Click += new System.EventHandler(this.radButtonAddInvoice_Click);
             // 
             // Register
             // 

@@ -83,8 +83,8 @@ namespace Rejestr_Faktur
             {
                 EditProduct edit = new EditProduct();
                 edit.ProductName = ((Product)objectListViewProducts.SelectedObject).ProductName;
-                edit.NetUnitPrice = (((Product)objectListViewProducts.SelectedObject).NetUnitPrice.ToString()).Replace(",", ".");
-                edit.GrossUnitPrice = (((Product)objectListViewProducts.SelectedObject).GrossUnitPrice.ToString()).Replace(",", ".");
+                edit.NetUnitPrice = (((Product)objectListViewProducts.SelectedObject).NetUnitPrice.ToString());
+                edit.GrossUnitPrice = (((Product)objectListViewProducts.SelectedObject).GrossUnitPrice.ToString());
                 edit.PKWiU = ((Product)objectListViewProducts.SelectedObject).PKWiU;
                 edit.Unit = ((Product)objectListViewProducts.SelectedObject).Unit;
                 edit.Tax = ((Product)objectListViewProducts.SelectedObject).Tax;

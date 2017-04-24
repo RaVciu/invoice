@@ -19,14 +19,20 @@ namespace Rejestr_Faktur
         }
 
         public string ProductName, PKWiU, Unit, NetUnitPrice, GrossUnitPrice;
+
+        private void radButtonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         public int ProductID, Tax;
 
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         private void radButtonEdit_Click(object sender, EventArgs e)
         {
             ProductName = radTextBoxProductName.Text;
-            NetUnitPrice = radTextBoxNetUnitPrice.Text;
-            GrossUnitPrice = radTextBoxGrossUnitPrice.Text;
+            NetUnitPrice = radTextBoxNetUnitPrice.Text.Replace(",", ".");
+            GrossUnitPrice = radTextBoxGrossUnitPrice.Text.Replace(",", ".");
             PKWiU = radTextBoxPKWiU.Text;
             Unit = radTextBoxUnit.Text;
             Tax = Int16.Parse(radTextBoxTax.Text);

@@ -101,31 +101,31 @@ namespace Linq
 
 
 
-            string cs = "Server=DESKTOP-8CTIS47\\SQLEXPRESS; Database=Rejestr; Integrated Security = SSPI";
-            SqlConnection con = new SqlConnection(cs);
+            //string cs = "Server=DESKTOP-8CTIS47\\SQLEXPRESS; Database=Rejestr; Integrated Security = SSPI";
+            //SqlConnection con = new SqlConnection(cs);
 
-            con.Open();
-            string sql = (@"SELECT com.CompanyName , com.Address, com.PostalCode, com.City, cus.CompanyName , cus.ContactName, cus.Address, cus.City, cus.PostalCode, cus.NIP, 
-                            prod.ProductName, prod.UnitPrice, prod.Unit, prod.PKWiU, invd.Tax
-                            FROM Invoices as inv
-                            JOIN Company as com ON com.CompanyID = inv.CompanyID
-                            JOIN Customers as cus ON cus.CustomerID = inv.CustomerID
-                            JOIN InvoiceDetails as invd ON invd.InvoiceID = inv.InvoiceID
-                            JOIN Products as prod ON prod.ProductID = invd.ProductID");
+            //con.Open();
+            //string sql = (@"SELECT com.CompanyName , com.Address, com.PostalCode, com.City, cus.CompanyName , cus.ContactName, cus.Address, cus.City, cus.PostalCode, cus.NIP, 
+            //                prod.ProductName, prod.UnitPrice, prod.Unit, prod.PKWiU, invd.Tax
+            //                FROM Invoices as inv
+            //                JOIN Company as com ON com.CompanyID = inv.CompanyID
+            //                JOIN Customers as cus ON cus.CustomerID = inv.CustomerID
+            //                JOIN InvoiceDetails as invd ON invd.InvoiceID = inv.InvoiceID
+            //                JOIN Products as prod ON prod.ProductID = invd.ProductID");
 
-            SqlCommand cmd = new SqlCommand(sql, con);
+            //SqlCommand cmd = new SqlCommand(sql, con);
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            List<Invoice> list = new List<Invoice>();
+            //SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds);
+            //List<Invoice> list = new List<Invoice>();
 
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                list.Add(new Invoice(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), Double.Parse(row[11].ToString()), row[12].ToString(), row[13].ToString(), Double.Parse(row[14].ToString())));
-            }
+            //foreach (DataRow row in ds.Tables[0].Rows)
+            //{
+            //    list.Add(new Invoice(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), Double.Parse(row[11].ToString()), row[12].ToString(), row[13].ToString(), Double.Parse(row[14].ToString())));
+            //}
             
-            objectListView.SetObjects(list);
+            //objectListView.SetObjects(list);
 
             //ListViewItem lvi = new ListViewItem(q.CompanyName);
 
@@ -172,6 +172,22 @@ namespace Linq
         private void objectListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBox1.Text = ((Invoice)objectListView.SelectedObject).UnitPrice.ToString();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox1.Text = (Double.Parse(textBox2.Text) / 1.23).ToString();
+            }
+
+            catch
+            {
+                if (textBox2.Text == "")
+                {
+                    textBox1.Text = "";
+                }
+            }
         }
     }
     
