@@ -34,7 +34,6 @@
             this.radLabelGrossUnitPrice = new Telerik.WinControls.UI.RadLabel();
             this.radTextBoxGrossUnitPrice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabelTax = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBoxTax = new Telerik.WinControls.UI.RadTextBox();
             this.radLabelUnit = new Telerik.WinControls.UI.RadLabel();
             this.radLabelPKWiU = new Telerik.WinControls.UI.RadLabel();
             this.radLabelNetUnitPrice = new Telerik.WinControls.UI.RadLabel();
@@ -43,6 +42,7 @@
             this.radTextBoxNetUnitPrice = new Telerik.WinControls.UI.RadTextBox();
             this.radTextBoxPKWiU = new Telerik.WinControls.UI.RadTextBox();
             this.radTextBoxUnit = new Telerik.WinControls.UI.RadTextBox();
+            this.comboBoxTax = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxCustomerDetails)).BeginInit();
@@ -50,7 +50,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabelGrossUnitPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxGrossUnitPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelTax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxTax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelPKWiU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelNetUnitPrice)).BeginInit();
@@ -83,10 +82,10 @@
             // radGroupBoxCustomerDetails
             // 
             this.radGroupBoxCustomerDetails.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBoxCustomerDetails.Controls.Add(this.comboBoxTax);
             this.radGroupBoxCustomerDetails.Controls.Add(this.radLabelGrossUnitPrice);
             this.radGroupBoxCustomerDetails.Controls.Add(this.radTextBoxGrossUnitPrice);
             this.radGroupBoxCustomerDetails.Controls.Add(this.radLabelTax);
-            this.radGroupBoxCustomerDetails.Controls.Add(this.radTextBoxTax);
             this.radGroupBoxCustomerDetails.Controls.Add(this.radLabelUnit);
             this.radGroupBoxCustomerDetails.Controls.Add(this.radLabelPKWiU);
             this.radGroupBoxCustomerDetails.Controls.Add(this.radLabelNetUnitPrice);
@@ -104,7 +103,7 @@
             // 
             // radLabelGrossUnitPrice
             // 
-            this.radLabelGrossUnitPrice.Location = new System.Drawing.Point(89, 128);
+            this.radLabelGrossUnitPrice.Location = new System.Drawing.Point(84, 133);
             this.radLabelGrossUnitPrice.Name = "radLabelGrossUnitPrice";
             this.radLabelGrossUnitPrice.Size = new System.Drawing.Size(84, 18);
             this.radLabelGrossUnitPrice.TabIndex = 11;
@@ -112,7 +111,7 @@
             // 
             // radTextBoxGrossUnitPrice
             // 
-            this.radTextBoxGrossUnitPrice.Location = new System.Drawing.Point(179, 127);
+            this.radTextBoxGrossUnitPrice.Location = new System.Drawing.Point(174, 132);
             this.radTextBoxGrossUnitPrice.Name = "radTextBoxGrossUnitPrice";
             this.radTextBoxGrossUnitPrice.Size = new System.Drawing.Size(212, 20);
             this.radTextBoxGrossUnitPrice.TabIndex = 2;
@@ -122,22 +121,15 @@
             // 
             // radLabelTax
             // 
-            this.radLabelTax.Location = new System.Drawing.Point(127, 155);
+            this.radLabelTax.Location = new System.Drawing.Point(122, 160);
             this.radLabelTax.Name = "radLabelTax";
             this.radLabelTax.Size = new System.Drawing.Size(46, 18);
             this.radLabelTax.TabIndex = 9;
             this.radLabelTax.Text = "VAT [%]";
             // 
-            // radTextBoxTax
-            // 
-            this.radTextBoxTax.Location = new System.Drawing.Point(179, 154);
-            this.radTextBoxTax.Name = "radTextBoxTax";
-            this.radTextBoxTax.Size = new System.Drawing.Size(212, 20);
-            this.radTextBoxTax.TabIndex = 5;
-            // 
             // radLabelUnit
             // 
-            this.radLabelUnit.Location = new System.Drawing.Point(114, 79);
+            this.radLabelUnit.Location = new System.Drawing.Point(113, 82);
             this.radLabelUnit.Name = "radLabelUnit";
             this.radLabelUnit.Size = new System.Drawing.Size(56, 18);
             this.radLabelUnit.TabIndex = 5;
@@ -145,7 +137,7 @@
             // 
             // radLabelPKWiU
             // 
-            this.radLabelPKWiU.Location = new System.Drawing.Point(129, 53);
+            this.radLabelPKWiU.Location = new System.Drawing.Point(128, 55);
             this.radLabelPKWiU.Name = "radLabelPKWiU";
             this.radLabelPKWiU.Size = new System.Drawing.Size(40, 18);
             this.radLabelPKWiU.TabIndex = 6;
@@ -153,7 +145,7 @@
             // 
             // radLabelNetUnitPrice
             // 
-            this.radLabelNetUnitPrice.Location = new System.Drawing.Point(94, 104);
+            this.radLabelNetUnitPrice.Location = new System.Drawing.Point(89, 107);
             this.radLabelNetUnitPrice.Name = "radLabelNetUnitPrice";
             this.radLabelNetUnitPrice.Size = new System.Drawing.Size(79, 18);
             this.radLabelNetUnitPrice.TabIndex = 5;
@@ -161,7 +153,7 @@
             // 
             // radLabelProductName
             // 
-            this.radLabelProductName.Location = new System.Drawing.Point(129, 29);
+            this.radLabelProductName.Location = new System.Drawing.Point(128, 29);
             this.radLabelProductName.Name = "radLabelProductName";
             this.radLabelProductName.Size = new System.Drawing.Size(39, 18);
             this.radLabelProductName.TabIndex = 4;
@@ -176,7 +168,7 @@
             // 
             // radTextBoxNetUnitPrice
             // 
-            this.radTextBoxNetUnitPrice.Location = new System.Drawing.Point(179, 103);
+            this.radTextBoxNetUnitPrice.Location = new System.Drawing.Point(174, 106);
             this.radTextBoxNetUnitPrice.Name = "radTextBoxNetUnitPrice";
             this.radTextBoxNetUnitPrice.Size = new System.Drawing.Size(212, 20);
             this.radTextBoxNetUnitPrice.TabIndex = 1;
@@ -186,17 +178,36 @@
             // 
             // radTextBoxPKWiU
             // 
-            this.radTextBoxPKWiU.Location = new System.Drawing.Point(175, 52);
+            this.radTextBoxPKWiU.Location = new System.Drawing.Point(174, 54);
             this.radTextBoxPKWiU.Name = "radTextBoxPKWiU";
             this.radTextBoxPKWiU.Size = new System.Drawing.Size(212, 20);
             this.radTextBoxPKWiU.TabIndex = 3;
             // 
             // radTextBoxUnit
             // 
-            this.radTextBoxUnit.Location = new System.Drawing.Point(176, 78);
+            this.radTextBoxUnit.Location = new System.Drawing.Point(175, 80);
             this.radTextBoxUnit.Name = "radTextBoxUnit";
             this.radTextBoxUnit.Size = new System.Drawing.Size(211, 20);
             this.radTextBoxUnit.TabIndex = 4;
+            // 
+            // comboBoxTax
+            // 
+            this.comboBoxTax.FormattingEnabled = true;
+            this.comboBoxTax.Items.AddRange(new object[] {
+            "23",
+            "8",
+            "7",
+            "6",
+            "5",
+            "0",
+            "zw.",
+            "np.",
+            "oo."});
+            this.comboBoxTax.Location = new System.Drawing.Point(174, 158);
+            this.comboBoxTax.Name = "comboBoxTax";
+            this.comboBoxTax.Size = new System.Drawing.Size(212, 21);
+            this.comboBoxTax.TabIndex = 12;
+            this.comboBoxTax.SelectedIndexChanged += new System.EventHandler(this.comboBoxTax_SelectedIndexChanged);
             // 
             // AddProduct
             // 
@@ -221,7 +232,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabelGrossUnitPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxGrossUnitPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelTax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxTax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelPKWiU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelNetUnitPrice)).EndInit();
@@ -241,7 +251,6 @@
         private Telerik.WinControls.UI.RadButton radButtonAdd;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxCustomerDetails;
         private Telerik.WinControls.UI.RadLabel radLabelTax;
-        private Telerik.WinControls.UI.RadTextBox radTextBoxTax;
         private Telerik.WinControls.UI.RadLabel radLabelUnit;
         private Telerik.WinControls.UI.RadLabel radLabelPKWiU;
         private Telerik.WinControls.UI.RadLabel radLabelNetUnitPrice;
@@ -252,5 +261,6 @@
         private Telerik.WinControls.UI.RadTextBox radTextBoxUnit;
         private Telerik.WinControls.UI.RadLabel radLabelGrossUnitPrice;
         private Telerik.WinControls.UI.RadTextBox radTextBoxGrossUnitPrice;
+        public System.Windows.Forms.ComboBox comboBoxTax;
     }
 }

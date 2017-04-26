@@ -38,6 +38,8 @@
             this.dateTimePickerInvoiceDate = new System.Windows.Forms.DateTimePicker();
             this.radTextBox_comCity = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radCheckBoxCustomerAdd = new Telerik.WinControls.UI.RadCheckBox();
+            this.labelCustomerID = new System.Windows.Forms.Label();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radRichTextEditor_cusCompanyName = new Telerik.WinControls.UI.RadRichTextEditor();
             this.radTextBox_cusCity = new Telerik.WinControls.UI.RadTextBox();
@@ -78,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_comCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxCustomerAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditor_cusCompanyName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_cusCity)).BeginInit();
@@ -201,6 +204,8 @@
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.radCheckBoxCustomerAdd);
+            this.radGroupBox2.Controls.Add(this.labelCustomerID);
             this.radGroupBox2.Controls.Add(this.radLabel7);
             this.radGroupBox2.Controls.Add(this.radRichTextEditor_cusCompanyName);
             this.radGroupBox2.Controls.Add(this.radTextBox_cusCity);
@@ -218,6 +223,23 @@
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "Nabywca";
             // 
+            // radCheckBoxCustomerAdd
+            // 
+            this.radCheckBoxCustomerAdd.Location = new System.Drawing.Point(50, 135);
+            this.radCheckBoxCustomerAdd.Name = "radCheckBoxCustomerAdd";
+            this.radCheckBoxCustomerAdd.Size = new System.Drawing.Size(151, 18);
+            this.radCheckBoxCustomerAdd.TabIndex = 16;
+            this.radCheckBoxCustomerAdd.Text = "Zapisz na liście odbiorców";
+            // 
+            // labelCustomerID
+            // 
+            this.labelCustomerID.AutoSize = true;
+            this.labelCustomerID.Location = new System.Drawing.Point(414, 19);
+            this.labelCustomerID.Name = "labelCustomerID";
+            this.labelCustomerID.Size = new System.Drawing.Size(0, 13);
+            this.labelCustomerID.TabIndex = 15;
+            this.labelCustomerID.Visible = false;
+            // 
             // radLabel7
             // 
             this.radLabel7.Location = new System.Drawing.Point(33, 19);
@@ -233,7 +255,7 @@
             this.radRichTextEditor_cusCompanyName.Location = new System.Drawing.Point(33, 41);
             this.radRichTextEditor_cusCompanyName.Name = "radRichTextEditor_cusCompanyName";
             this.radRichTextEditor_cusCompanyName.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.radRichTextEditor_cusCompanyName.Size = new System.Drawing.Size(196, 115);
+            this.radRichTextEditor_cusCompanyName.Size = new System.Drawing.Size(196, 88);
             this.radRichTextEditor_cusCompanyName.TabIndex = 13;
             // 
             // radTextBox_cusCity
@@ -298,6 +320,7 @@
             this.radButton_SelectCustomer.Size = new System.Drawing.Size(98, 116);
             this.radButton_SelectCustomer.TabIndex = 0;
             this.radButton_SelectCustomer.Text = "Dodaj z listy";
+            this.radButton_SelectCustomer.Click += new System.EventHandler(this.radButton_SelectCustomer_Click);
             // 
             // radGroupBoxSum
             // 
@@ -408,6 +431,11 @@
             // comboBoxPaymentMethod
             // 
             this.comboBoxPaymentMethod.FormattingEnabled = true;
+            this.comboBoxPaymentMethod.Items.AddRange(new object[] {
+            "Gotówka",
+            "Przelew",
+            "Karta",
+            "Pobranie"});
             this.comboBoxPaymentMethod.Location = new System.Drawing.Point(15, 41);
             this.comboBoxPaymentMethod.Name = "comboBoxPaymentMethod";
             this.comboBoxPaymentMethod.Size = new System.Drawing.Size(121, 21);
@@ -451,6 +479,7 @@
             this.objectListViewInvoiceDetails.TabIndex = 7;
             this.objectListViewInvoiceDetails.UseCompatibleStateImageBehavior = false;
             this.objectListViewInvoiceDetails.View = System.Windows.Forms.View.Details;
+            this.objectListViewInvoiceDetails.ItemsChanged += new System.EventHandler<BrightIdeasSoftware.ItemsChangedEventArgs>(this.objectListViewInvoiceDetails_ItemsChanged);
             // 
             // radButtonAddInvoiceDetail
             // 
@@ -476,6 +505,7 @@
             this.radButtonDeleteInvoiceDetail.Size = new System.Drawing.Size(95, 52);
             this.radButtonDeleteInvoiceDetail.TabIndex = 10;
             this.radButtonDeleteInvoiceDetail.Text = "Usuń";
+            this.radButtonDeleteInvoiceDetail.Click += new System.EventHandler(this.radButtonDeleteInvoiceDetail_Click);
             // 
             // radButtonSave
             // 
@@ -484,6 +514,7 @@
             this.radButtonSave.Size = new System.Drawing.Size(150, 50);
             this.radButtonSave.TabIndex = 11;
             this.radButtonSave.Text = "Zapisz";
+            this.radButtonSave.Click += new System.EventHandler(this.radButtonSave_Click);
             // 
             // radButtonCancel
             // 
@@ -492,6 +523,7 @@
             this.radButtonCancel.Size = new System.Drawing.Size(150, 50);
             this.radButtonCancel.TabIndex = 12;
             this.radButtonCancel.Text = "Anuluj";
+            this.radButtonCancel.Click += new System.EventHandler(this.radButtonCancel_Click);
             // 
             // AddInvoice
             // 
@@ -530,6 +562,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             this.radGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxCustomerAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditor_cusCompanyName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_cusCity)).EndInit();
@@ -591,15 +624,10 @@
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox_cusNIP;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
-        private Telerik.WinControls.UI.RadTextBox radTextBox_cusAddress;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadTextBox radTextBox_cusPostalCode;
         private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadRichTextEditor radRichTextEditor_cusCompanyName;
-        private Telerik.WinControls.UI.RadTextBox radTextBox_cusCity;
         private Telerik.WinControls.UI.RadButton radButtonSave;
         private Telerik.WinControls.UI.RadButton radButtonCancel;
         private Telerik.WinControls.UI.RadTextBox radTextBoxIssuedBy;
@@ -612,5 +640,12 @@
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private System.Windows.Forms.ComboBox comboBoxPaymentMethod;
         public BrightIdeasSoftware.ObjectListView objectListViewTaxList;
+        public Telerik.WinControls.UI.RadTextBox radTextBox_cusNIP;
+        public Telerik.WinControls.UI.RadTextBox radTextBox_cusAddress;
+        public Telerik.WinControls.UI.RadTextBox radTextBox_cusPostalCode;
+        public Telerik.WinControls.UI.RadRichTextEditor radRichTextEditor_cusCompanyName;
+        public Telerik.WinControls.UI.RadTextBox radTextBox_cusCity;
+        public System.Windows.Forms.Label labelCustomerID;
+        private Telerik.WinControls.UI.RadCheckBox radCheckBoxCustomerAdd;
     }
 }

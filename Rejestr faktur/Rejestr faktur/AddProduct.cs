@@ -20,22 +20,22 @@ namespace Rejestr_Faktur
 
         private void AddProduct_Load(object sender, EventArgs e)
         {
-            radTextBoxTax.Text = "23";
+            
         }
 
+          string ProductName, PKWiU, Unit;
+          string NetUnitPrice, GrossUnitPrice;
+          string Tax, TaxName;
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         private void radButtonAdd_Click(object sender, EventArgs e)
         {
-            string ProductName, PKWiU, Unit;
-            string NetUnitPrice, GrossUnitPrice;
-            int Tax;
+  
 
             ProductName = radTextBoxProductName.Text;
             NetUnitPrice = (radTextBoxNetUnitPrice.Text).Replace(",", ".");
             GrossUnitPrice = (radTextBoxGrossUnitPrice.Text).Replace(",", ".");
             PKWiU = radTextBoxPKWiU.Text;
             Unit = radTextBoxUnit.Text;
-            Tax = Int16.Parse(radTextBoxTax.Text);
 
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
@@ -82,7 +82,7 @@ namespace Rejestr_Faktur
             {
                 try
                 {
-                    decimal tax = 1 + Decimal.Parse(radTextBoxTax.Text) / 100;
+                    decimal tax = 1 + Decimal.Parse(Tax) / 100;
                     radTextBoxGrossUnitPrice.Text = Math.Round(Decimal.Multiply(Decimal.Parse(radTextBoxNetUnitPrice.Text), tax), 2).ToString();
                 }
                 catch { radTextBoxGrossUnitPrice.Text = ""; }
@@ -96,13 +96,22 @@ namespace Rejestr_Faktur
             {
                 try
                 {
-                    decimal tax = 1 + Decimal.Parse(radTextBoxTax.Text) / 100;
+                    decimal tax = 1 + Decimal.Parse(Tax) / 100;
                     radTextBoxNetUnitPrice.Text = Math.Round(Decimal.Divide(Decimal.Parse(radTextBoxGrossUnitPrice.Text), tax), 2).ToString();
                 }
                 catch { radTextBoxNetUnitPrice.Text = ""; }
             }
         }
 
-
+        private void comboBoxTax_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int tax;
+            if (int.TryParse(comboBoxTax.SelectedItem.ToString(), out tax))
+            {
+                Tax = tax.ToString();
+                TaxName = Tax;
+            }
+            else { Tax = "0"; TaxName = comboBoxTax.SelectedItem.ToString(); }
+        }
     }
 }

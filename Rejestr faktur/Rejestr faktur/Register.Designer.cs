@@ -92,14 +92,15 @@
             this.objectListViewInvoices.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListViewInvoices.FullRowSelect = true;
             this.objectListViewInvoices.GridLines = true;
-            this.objectListViewInvoices.Location = new System.Drawing.Point(370, 93);
+            this.objectListViewInvoices.Location = new System.Drawing.Point(30, 93);
             this.objectListViewInvoices.Name = "objectListViewInvoices";
             this.objectListViewInvoices.ShowGroups = false;
-            this.objectListViewInvoices.Size = new System.Drawing.Size(998, 517);
+            this.objectListViewInvoices.Size = new System.Drawing.Size(1338, 517);
             this.objectListViewInvoices.TabIndex = 0;
             this.objectListViewInvoices.UseCompatibleStateImageBehavior = false;
             this.objectListViewInvoices.UseFiltering = true;
             this.objectListViewInvoices.View = System.Windows.Forms.View.Details;
+            this.objectListViewInvoices.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListViewInvoices_MouseDoubleClick);
             // 
             // InvoiceNo
             // 
@@ -234,7 +235,7 @@
             // 
             // radButtonCustomers
             // 
-            this.radButtonCustomers.Location = new System.Drawing.Point(370, 42);
+            this.radButtonCustomers.Location = new System.Drawing.Point(30, 42);
             this.radButtonCustomers.Name = "radButtonCustomers";
             this.radButtonCustomers.Size = new System.Drawing.Size(212, 40);
             this.radButtonCustomers.TabIndex = 6;
@@ -243,7 +244,7 @@
             // 
             // radButtonProducts
             // 
-            this.radButtonProducts.Location = new System.Drawing.Point(606, 42);
+            this.radButtonProducts.Location = new System.Drawing.Point(266, 42);
             this.radButtonProducts.Name = "radButtonProducts";
             this.radButtonProducts.Size = new System.Drawing.Size(212, 40);
             this.radButtonProducts.TabIndex = 7;
@@ -252,7 +253,7 @@
             // 
             // radButtonAddInvoice
             // 
-            this.radButtonAddInvoice.Location = new System.Drawing.Point(841, 42);
+            this.radButtonAddInvoice.Location = new System.Drawing.Point(501, 42);
             this.radButtonAddInvoice.Name = "radButtonAddInvoice";
             this.radButtonAddInvoice.Size = new System.Drawing.Size(212, 40);
             this.radButtonAddInvoice.TabIndex = 8;
@@ -277,6 +278,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Rejestr faktur";
+            this.Activated += new System.EventHandler(this.Rejestr_Load);
             this.Load += new System.EventHandler(this.Rejestr_Load);
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).EndInit();

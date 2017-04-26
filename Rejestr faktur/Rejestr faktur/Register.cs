@@ -30,7 +30,7 @@ namespace Rejestr_Faktur
         public void Reload_objectListViewInvoices()
         {
             string InvoiceQuery = (@"SELECT com.CompanyName, inv.IssuedBy, com.Address, com.City, com.PostalCode, com.NIP, com.IBAN, com.BankName, 
-                                inv.CompanyName, inv.NIP, inv.Address, inv.City, inv.PostalCode, inv.InvoiceNo, inv.OrderDate, inv.InvoiceDate, inv.PaymentDate, inv.PaymentMethod,  inv.Sum
+                                inv.CompanyName, inv.NIP, inv.Address, inv.City, inv.PostalCode, inv.InvoiceNo, inv.OrderDate, inv.InvoiceDate, inv.PaymentDate, inv.PaymentMethod,  inv.Sum, inv.InvoiceID
                                     FROM Invoices as inv
                                     JOIN Company as com ON com.CompanyID = inv.CompanyID");
 
@@ -54,7 +54,7 @@ namespace Rejestr_Faktur
 
                 listOfInvoices.Add(new Invoice(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(),
                                      row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), row[11].ToString(), row[12].ToString(), row[13].ToString(),
-                                     OrderDate.ToString("dd.MM.yyyy"), InvoiceDate.ToString("dd.MM.yyyy"), PaymentDate.ToString("dd.MM.yyyy"), row[17].ToString(), Sum));
+                                     OrderDate.ToString("dd.MM.yyyy"), InvoiceDate.ToString("dd.MM.yyyy"), PaymentDate.ToString("dd.MM.yyyy"), row[17].ToString(), Sum, int.Parse(row[19].ToString())));
             }
             objectListViewInvoices.SetObjects(listOfInvoices);
             labelGrossValue.Text = GrossValue.ToString();
@@ -82,6 +82,17 @@ namespace Rejestr_Faktur
         {
             AddInvoice AddInv = new AddInvoice();
             AddInv.Show();
+        }
+
+        private void objectListViewInvoices_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                EditInvoice editinv = new EditInvoice();
+                editinv.InvoiceID = ((Invoice)objectListViewInvoices.SelectedObject).InvoiceID;
+                editinv.Show();
+            }
+            catch { }
         }
     }
 }

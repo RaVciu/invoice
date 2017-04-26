@@ -10,7 +10,7 @@ namespace Rejestr_Faktur
     {
         public Invoice(string comCompanyName, string IssuedBy, string comAddress, string comCity, string comPostalCode, string comNIP, string comIBAN, string comBankName,
                        string cusCompanyName, string cusNIP, string cusAddress, string cusCity, string cusPostalCode, string InvoiceNo, string OrderDate,
-                       string InvoiceDate, string PaymentDate, string PaymentMethod, decimal Sum)
+                       string InvoiceDate, string PaymentDate, string PaymentMethod, decimal Sum, int InvoiceID)
         {
             this.comCompanyName = comCompanyName;
             this.IssuedBy = IssuedBy;
@@ -31,6 +31,7 @@ namespace Rejestr_Faktur
             this.PaymentDate = PaymentDate;
             this.PaymentMethod = PaymentMethod;
             this.Sum = Sum;
+            this.InvoiceID = InvoiceID;
         }
 
         public string comCompanyName { get; set; }
@@ -52,5 +53,6 @@ namespace Rejestr_Faktur
         public string PaymentDate { get; set; }
         public string PaymentMethod { get; set; }
         public decimal Sum { get; set; }
+        public int InvoiceID { get; set; }
     }
 }

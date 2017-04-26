@@ -41,7 +41,7 @@ namespace Rejestr_Faktur
             List<Product> listOfProducts = new List<Product>();
             foreach(DataRow row in ds.Tables[0].Rows)
             {
-                listOfProducts.Add(new Product(row[0].ToString(), Decimal.Parse(row[1].ToString()), Decimal.Parse(row[2].ToString()), row[3].ToString(), row[4].ToString(), Int16.Parse(row[5].ToString()), Int16.Parse(row[6].ToString())));
+                listOfProducts.Add(new Product(row[0].ToString(), Decimal.Parse(row[1].ToString()), Decimal.Parse(row[2].ToString()), row[3].ToString(), row[4].ToString(), row[5].ToString(), Int16.Parse(row[6].ToString())));
             }
             Generator.GenerateColumns(objectListViewProducts, typeof(Product), true);
             objectListViewProducts.SetObjects(listOfProducts);
@@ -55,7 +55,7 @@ namespace Rejestr_Faktur
         }
 
 
-        private void radTextBoxSearchCustomers_TextChanged(object sender, EventArgs e)
+        private void radTextBoxSearchProducts_TextChanged(object sender, EventArgs e)
         {
             objectListViewProducts.ModelFilter = TextMatchFilter.Contains(objectListViewProducts, radTextBoxSearchProducts.Text);
         }

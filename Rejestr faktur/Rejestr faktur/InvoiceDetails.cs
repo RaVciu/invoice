@@ -11,7 +11,7 @@ namespace Rejestr_Faktur
     {
 
 
-        public InvoiceDetails(int Ordinal, int InvoiceID, int ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, int Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
+        public InvoiceDetails(int Ordinal, int InvoiceID, int ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, string Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
         {
             this.Ordinal = Ordinal;
             this.InvoiceID = InvoiceID;
@@ -28,7 +28,7 @@ namespace Rejestr_Faktur
             this.GrossValue = GrossValue;
         }
 
-        public InvoiceDetails(int Ordinal, int ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, int Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
+        public InvoiceDetails(int Ordinal, int ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, string Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
         {
             this.Ordinal = Ordinal;
             this.ProductID = ProductID;
@@ -68,12 +68,12 @@ namespace Rejestr_Faktur
         public string Unit { get; set; }
 
         [OLVColumn("VAT", Width = 40, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
-        public int Tax { get; set; }
+        public string Tax { get; set; }
 
         [OLVColumn("Ilość", Width = 40, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
         public int Quantity { get; set; }
 
-        [OLVColumn("Rabat", Width = 50, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
+        [OLVColumn("Rabat", Width = 50, TextAlign = System.Windows.Forms.HorizontalAlignment.Right, AspectToStringFormat = "{0:0,0}")]
         public decimal Discount { get; set; }
 
         [OLVColumn("Wart. netto [zł]", Width = 100, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
