@@ -94,5 +94,11 @@ namespace Rejestr_Faktur
             }
             catch { }
         }
+
+        private void radButtonPrint_Click(object sender, EventArgs e)
+        {
+            PrintInvoice print = new PrintInvoice();
+            print.Show();
+        }
     }
 }

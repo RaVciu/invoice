@@ -23,8 +23,8 @@ namespace Rejestr_Faktur
             this.Close();
         }
 
-        public string ProductName, PKWiU, Unit, Tax, TaxName;
-        public int ProductID,Quantity;
+        public string ProductName, PKWiU, Unit, Tax, TaxName, ProductID;
+        public int Quantity;
         public decimal NetUnitPrice, GrossUnitPrice, Discount, NetValue, GrossValue;
         private void radButtonAdd_Click(object sender, EventArgs e)
         {
@@ -45,8 +45,8 @@ namespace Rejestr_Faktur
             NetValue = Decimal.Round(Decimal.Multiply(Decimal.Multiply(NetUnitPrice, Quantity), DiscountMultiplier), 2);          
             if (labelProductID.Text != "")
             {
-                ProductID = Int16.Parse(labelProductID.Text);
-            }
+                ProductID = labelProductID.Text;
+            } else { ProductID = ""; }
 
             try
             {

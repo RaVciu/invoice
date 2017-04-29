@@ -19,16 +19,22 @@ namespace Rejestr_Faktur
             InitializeComponent();
             Generator.GenerateColumns(objectListViewInvoiceDetails, typeof(InvoiceDetails), true);
             Generator.GenerateColumns(objectListViewTaxList, typeof(TaxList), true);
-            TaxL.Add(new TaxList("23", "23",0, 0, 0));
-            TaxL.Add(new TaxList("8", "8",0, 0, 0));
-            TaxL.Add(new TaxList("7", "7",0, 0, 0));
-            TaxL.Add(new TaxList("6", "6",0, 0, 0));
-            TaxL.Add(new TaxList("5", "5",0, 0, 0));
-            TaxL.Add(new TaxList("zw.", "0",0, 0, 0));
-            TaxL.Add(new TaxList("np.", "0",0, 0, 0));
-            TaxL.Add(new TaxList("oo.", "0",0, 0, 0));
-
+            TaxLResetObjects();
         }
+
+        private void TaxLResetObjects()
+        {
+            TaxL.Clear();
+            TaxL.Add(new TaxList("23", "23", 0, 0, 0));
+            TaxL.Add(new TaxList("8", "8", 0, 0, 0));
+            TaxL.Add(new TaxList("7", "7", 0, 0, 0));
+            TaxL.Add(new TaxList("6", "6", 0, 0, 0));
+            TaxL.Add(new TaxList("5", "5", 0, 0, 0));
+            TaxL.Add(new TaxList("zw.", "0", 0, 0, 0));
+            TaxL.Add(new TaxList("np.", "0", 0, 0, 0));
+            TaxL.Add(new TaxList("oo.", "0", 0, 0, 0));
+        }
+
         string comCompanyName, comAddress, comCity, comPostalCode, comNIP, comIBAN, comBankName;
         int CompanyID;
         public string ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
@@ -72,17 +78,14 @@ namespace Rejestr_Faktur
             string cusCity = radTextBox_cusCity.Text;
             string cusPostalCode = radTextBox_cusPostalCode.Text;
             string cusNIP = radTextBox_cusNIP.Text;
-            int CustomerID;
+            string CustomerID;
             string InvoiceNo = radTextBoxInvoiceNo.Text;
             int CompanyID = this.CompanyID;
             if (labelCustomerID.Text != "")
             {
-                 CustomerID = int.Parse(labelCustomerID.Text);
-            } else { CustomerID = 0; }
+                 CustomerID = labelCustomerID.Text;
+            } else { CustomerID = ""; }
             string IssuedBy = radTextBoxIssuedBy.Text;
-            string OrderDate = dateTimePickerOrderDate.Value.Date.ToString();
-            string InvoiceDate = dateTimePickerInvoiceDate.Value.Date.ToString();
-            string PaymentDate = dateTimePickerPaymentDate.Value.Date.ToString();
             string PaymentMethod = comboBoxPaymentMethod.SelectedItem.ToString();
             string Sum = (radLabelGrossSum.Text).Replace(",", ".");
             int InvoiceID;
@@ -91,7 +94,7 @@ namespace Rejestr_Faktur
                 string QueryCustomer = "INSERT INTO Customers (CompanyName, Address, City, PostalCode, NIP) VALUES ('" + cusCompanyName + "', '" + cusAddress + "', '" + cusCity + "', '" + cusPostalCode + "', '" + cusNIP + "') SELECT SCOPE_IDENTITY()";
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(QueryCustomer, connection);
-                CustomerID = int.Parse(cmd.ExecuteScalar().ToString());
+                CustomerID = cmd.ExecuteScalar().ToString();
                 string QueryInvoice = "INSERT INTO Invoices (InvoiceNo, CompanyID, CustomerID, IssuedBy, OrderDate, InvoiceDate, PaymentDate, PaymentMethod, CompanyName, Address, City, PostalCode, NIP, Sum) VALUES('" + InvoiceNo + "', " + CompanyID + ", " + CustomerID + " ,'" + IssuedBy + "', @OrderDate, @InvoiceDate, @PaymentDate, '" + PaymentMethod + "', '" + cusCompanyName + "', '" + cusAddress + "', '" + cusCity + "', '" + cusPostalCode + "', '" + cusNIP + "', " + Sum + "); SELECT SCOPE_IDENTITY()";
                 SqlCommand cmd2 = new SqlCommand(QueryInvoice, connection);
                 cmd2.Parameters.Add("@OrderDate", SqlDbType.Date).Value = dateTimePickerOrderDate.Value.Date;
@@ -103,7 +106,7 @@ namespace Rejestr_Faktur
 
             else
             {
-                string QueryInvoice = "INSERT INTO Invoices (InvoiceNo, CompanyID, CustomerID, IssuedBy, OrderDate, InvoiceDate, PaymentDate, PaymentMethod, CompanyName, Address, City, PostalCode, NIP, Sum) VALUES('" + InvoiceNo + "', " + CompanyID + ", " + CustomerID + " ,'" + IssuedBy + "', @OrderDate, @InvoiceDate, @PaymentDate, '" + PaymentMethod + "', '" + cusCompanyName + "', '" + cusAddress + "', '" + cusCity + "', '" + cusPostalCode + "', '" + cusNIP + "', " + Sum + "); SELECT SCOPE_IDENTITY()";
+                string QueryInvoice = "INSERT INTO Invoices (InvoiceNo, CompanyID, IssuedBy, OrderDate, InvoiceDate, PaymentDate, PaymentMethod, CompanyName, Address, City, PostalCode, NIP, Sum) VALUES('" + InvoiceNo + "', " + CompanyID + ", '" + IssuedBy + "', @OrderDate, @InvoiceDate, @PaymentDate, '" + PaymentMethod + "', '" + cusCompanyName + "', '" + cusAddress + "', '" + cusCity + "', '" + cusPostalCode + "', '" + cusNIP + "', " + Sum + "); SELECT SCOPE_IDENTITY()";
                 connection.Open();
                 SqlCommand cmd2 = new SqlCommand(QueryInvoice, connection);
                 cmd2.Parameters.Add("@OrderDate", SqlDbType.Date).Value = dateTimePickerOrderDate.Value.Date;
@@ -116,7 +119,7 @@ namespace Rejestr_Faktur
             foreach(InvoiceDetails invd in objectListViewInvoiceDetails.Objects)
             {
 
-                int ProductID = invd.ProductID;
+                string ProductID = invd.ProductID;
                 string ProductName = invd.ProductName;
                 string NetUnitPrice = invd.NetUnitPrice.ToString().Replace(",", ".");
                 string GrossUnitPrice = invd.GrossUnitPrice.ToString().Replace(",", ".");
@@ -159,6 +162,7 @@ namespace Rejestr_Faktur
 
         private void objectListViewInvoiceDetails_ItemsChanged(object sender, ItemsChangedEventArgs e)
         {
+            TaxLResetObjects();
             if (objectListViewInvoiceDetails.GetItemCount() > 0)
             {
 
@@ -180,6 +184,7 @@ namespace Rejestr_Faktur
                 }
                 objectListViewTaxList.SetObjects(TaxL.FindAll(x => x.NetValue>0));
             }
+            else { objectListViewTaxList.ClearObjects(); }
 
             decimal GrossSum = 0;
             try

@@ -11,7 +11,7 @@ namespace Rejestr_Faktur
     {
 
 
-        public InvoiceDetails(int Ordinal, int InvoiceID, int ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, string Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
+        public InvoiceDetails(int Ordinal, int InvoiceID, string ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, string Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
         {
             this.Ordinal = Ordinal;
             this.InvoiceID = InvoiceID;
@@ -28,7 +28,7 @@ namespace Rejestr_Faktur
             this.GrossValue = GrossValue;
         }
 
-        public InvoiceDetails(int Ordinal, int ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, string Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
+        public InvoiceDetails(int Ordinal, string ProductID, string ProductName, decimal NetUnitPrice, decimal GrossUnitPrice, string PKWiU, string Unit, string Tax, int Quantity, decimal Discount, decimal NetValue, decimal GrossValue)
         {
             this.Ordinal = Ordinal;
             this.ProductID = ProductID;
@@ -50,7 +50,7 @@ namespace Rejestr_Faktur
         public int InvoiceID { get; set; }
 
         [OLVColumn(IsVisible = false)]
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
 
         [OLVColumn("Nazwa produktu", Width = 120, TextAlign = System.Windows.Forms.HorizontalAlignment.Center)]
         public string ProductName { get; set; }

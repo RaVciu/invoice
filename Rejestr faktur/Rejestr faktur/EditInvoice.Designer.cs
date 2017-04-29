@@ -405,6 +405,9 @@
             this.radTextBox_cusNIP.Name = "radTextBox_cusNIP";
             this.radTextBox_cusNIP.Size = new System.Drawing.Size(214, 20);
             this.radTextBox_cusNIP.TabIndex = 5;
+            this.radTextBox_cusNIP.TextChanged += new System.EventHandler(this.radTextBox_cusNIP_TextChanged);
+            this.radTextBox_cusNIP.Enter += new System.EventHandler(this.radTextBox_cusNIP_Enter);
+            this.radTextBox_cusNIP.Leave += new System.EventHandler(this.radTextBox_cusNIP_Leave);
             // 
             // radLabel5
             // 

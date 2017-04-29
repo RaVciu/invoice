@@ -49,6 +49,7 @@
             this.radButtonCustomers = new Telerik.WinControls.UI.RadButton();
             this.radButtonProducts = new Telerik.WinControls.UI.RadButton();
             this.radButtonAddInvoice = new Telerik.WinControls.UI.RadButton();
+            this.radButtonPrint = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
@@ -56,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonAddInvoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -260,11 +262,21 @@
             this.radButtonAddInvoice.Text = "Dodaj fakturę";
             this.radButtonAddInvoice.Click += new System.EventHandler(this.radButtonAddInvoice_Click);
             // 
+            // radButtonPrint
+            // 
+            this.radButtonPrint.Location = new System.Drawing.Point(735, 42);
+            this.radButtonPrint.Name = "radButtonPrint";
+            this.radButtonPrint.Size = new System.Drawing.Size(212, 40);
+            this.radButtonPrint.TabIndex = 9;
+            this.radButtonPrint.Text = "Drukuj";
+            this.radButtonPrint.Click += new System.EventHandler(this.radButtonPrint_Click);
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 651);
+            this.Controls.Add(this.radButtonPrint);
             this.Controls.Add(this.radButtonAddInvoice);
             this.Controls.Add(this.radButtonProducts);
             this.Controls.Add(this.radButtonCustomers);
@@ -288,6 +300,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonAddInvoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -317,5 +330,6 @@
         private Telerik.WinControls.UI.RadButton radButtonCustomers;
         private Telerik.WinControls.UI.RadButton radButtonProducts;
         private Telerik.WinControls.UI.RadButton radButtonAddInvoice;
+        private Telerik.WinControls.UI.RadButton radButtonPrint;
     }
 }
