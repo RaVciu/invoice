@@ -6,14 +6,12 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
-using BrightIdeasSoftware;
-using System.Data.SqlClient;
 
 namespace Rejestr_Faktur
 {
-    public partial class AddInvoiceDetails : Telerik.WinControls.UI.RadForm
+    public partial class EditInvoiceDetails : Telerik.WinControls.UI.RadForm
     {
-        public AddInvoiceDetails()
+        public EditInvoiceDetails()
         {
             InitializeComponent();
         }
@@ -24,9 +22,10 @@ namespace Rejestr_Faktur
         }
 
         public string ProductName, PKWiU, Unit, Tax, TaxName, ProductID;
-        public int Quantity;
+        public int Quantity, SelectedObjectIndex, Old_Ordinal;
         public decimal NetUnitPrice, GrossUnitPrice, Discount, NetValue, GrossValue;
-        private void radButtonAdd_Click(object sender, EventArgs e)
+        List<InvoiceDetails> ObjectToInsert = new List<InvoiceDetails>();
+        private void radButtonEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -51,37 +50,43 @@ namespace Rejestr_Faktur
                 }
                 else { ProductID = ""; }
 
-
             try
             {
                 var owner = ((AddInvoice)this.Owner);
                 if (owner != null)
                 {
-                    int Ordinal = owner.objectListViewInvoiceDetails.GetItemCount() + 1;
-                    owner.objectListViewInvoiceDetails.AddObject(new InvoiceDetails(Ordinal, ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, TaxName, Quantity, Discount, NetValue, GrossValue));
+                    ObjectToInsert.Add(new InvoiceDetails(Old_Ordinal, ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, TaxName, Quantity, Discount, NetValue, GrossValue));
+                    owner.objectListViewInvoiceDetails.SelectedIndex = SelectedObjectIndex;
+                    owner.objectListViewInvoiceDetails.RemoveObject(owner.objectListViewInvoiceDetails.SelectedObject);
+                    owner.objectListViewInvoiceDetails.InsertObjects(SelectedObjectIndex, ObjectToInsert);
                     owner.NetValue = NetValue;
                     owner.GrossValue = GrossValue;
                     owner.TaxValue = GrossValue - NetValue;
                     owner.Tax = Tax;
                 }
-            } catch { }
+            }
+            catch { }
 
             try
             {
                 var owner2 = ((EditInvoice)this.Owner);
                 if (owner2 != null)
                 {
-                    int Ordinal2 = owner2.objectListViewInvoiceDetails.GetItemCount() + 1;
-                    owner2.objectListViewInvoiceDetails.AddObject(new InvoiceDetails(Ordinal2, ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, TaxName, Quantity, Discount, NetValue, GrossValue));
+                    ObjectToInsert.Add(new InvoiceDetails(Old_Ordinal, ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, TaxName, Quantity, Discount, NetValue, GrossValue));
+                    owner2.objectListViewInvoiceDetails.SelectedIndex = SelectedObjectIndex;
+                    owner2.objectListViewInvoiceDetails.RemoveObject(owner2.objectListViewInvoiceDetails.SelectedObject);
+                    owner2.objectListViewInvoiceDetails.InsertObjects(SelectedObjectIndex, ObjectToInsert);
                     owner2.NetValue = NetValue;
                     owner2.GrossValue = GrossValue;
                     owner2.TaxValue = GrossValue - NetValue;
                     owner2.Tax = Tax;
                 }
-            } catch { }
+            }
+            catch { }
             this.Close();
             }
             catch { MessageBox.Show("Niepoprawny format danych bądź występują puste pola"); }
+
         }
 
         bool GrossUnitValue = false;
@@ -167,7 +172,7 @@ namespace Rejestr_Faktur
             }
         }
 
-        private void AddInvoiceDetails_Load(object sender, EventArgs e)
+        private void EditInvoiceDetails_Load(object sender, EventArgs e)
         {
             comboBoxTax.Text = "23";
         }

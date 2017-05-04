@@ -54,14 +54,16 @@ namespace Rejestr_Faktur
             PhoneNumber = radTextBoxPhoneNumber.Text;
             Email = radTextBoxEmail.Text;
             WWW = radTextBoxWWW.Text;
-
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            string EditCustomerQuery = "UPDATE Customers SET CompanyName = '" + CompanyName + "', ContactName = '" + ContactName + "',NIP = '" + NIP + "',Address = '" + Address + "',City = '" + City + "',PostalCode = '" + PostalCode + "',IBAN = '" + IBAN + "',PhoneNumber = '" + PhoneNumber + "',Email = '" + Email + "',WWW = '" + WWW + "' WHERE CustomerID = '"+this.CustomerID+"'";
-            SqlCommand command = new SqlCommand(EditCustomerQuery, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-
+            try
+            {
+                SqlConnection connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                string EditCustomerQuery = "UPDATE Customers SET CompanyName = '" + CompanyName + "', ContactName = '" + ContactName + "',NIP = '" + NIP + "',Address = '" + Address + "',City = '" + City + "',PostalCode = '" + PostalCode + "',IBAN = '" + IBAN + "',PhoneNumber = '" + PhoneNumber + "',Email = '" + Email + "',WWW = '" + WWW + "' WHERE CustomerID = '" + this.CustomerID + "'";
+                SqlCommand command = new SqlCommand(EditCustomerQuery, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch { MessageBox.Show("Niepoprawny format danych bądź występują puste pola"); }
             this.Close();
         }
     }

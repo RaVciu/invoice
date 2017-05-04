@@ -34,6 +34,7 @@ namespace Rejestr_Faktur
             this.InvoiceID = InvoiceID;
         }
 
+
         public string comCompanyName { get; set; }
         public string IssuedBy { get; set; }
         public string comAddress { get; set; }

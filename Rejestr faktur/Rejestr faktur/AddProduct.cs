@@ -30,20 +30,23 @@ namespace Rejestr_Faktur
         private void radButtonAdd_Click(object sender, EventArgs e)
         {
   
-
+            
             ProductName = radTextBoxProductName.Text;
             NetUnitPrice = (radTextBoxNetUnitPrice.Text).Replace(",", ".");
             GrossUnitPrice = (radTextBoxGrossUnitPrice.Text).Replace(",", ".");
             PKWiU = radTextBoxPKWiU.Text;
             Unit = radTextBoxUnit.Text;
-
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            string AddProductQuery = "INSERT INTO Products VALUES ('"+ProductName+"', "+NetUnitPrice+","+GrossUnitPrice+" ,'"+PKWiU+"', '"+Unit+"', "+Tax+")";
-            SqlCommand command = new SqlCommand(AddProductQuery, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-            this.Close();
+            try
+            {
+                SqlConnection connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                string AddProductQuery = "INSERT INTO Products VALUES ('" + ProductName + "', " + NetUnitPrice + "," + GrossUnitPrice + " ,'" + PKWiU + "', '" + Unit + "', " + Tax + ")";
+                SqlCommand command = new SqlCommand(AddProductQuery, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+                this.Close();
+            }
+            catch { MessageBox.Show("Niepoprawny format danych bądź występują puste pola"); }
         }
 
         private void radButtonCancel_Click(object sender, EventArgs e)

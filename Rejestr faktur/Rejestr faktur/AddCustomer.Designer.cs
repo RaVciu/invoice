@@ -293,6 +293,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Dodaj nowego klienta";
+            this.Load += new System.EventHandler(this.AddCustomer_cs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCompanyName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxNIP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxAddress)).EndInit();

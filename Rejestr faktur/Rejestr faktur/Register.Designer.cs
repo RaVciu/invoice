@@ -50,6 +50,8 @@
             this.radButtonProducts = new Telerik.WinControls.UI.RadButton();
             this.radButtonAddInvoice = new Telerik.WinControls.UI.RadButton();
             this.radButtonPrint = new Telerik.WinControls.UI.RadButton();
+            this.radButtonDeleteInvoice = new Telerik.WinControls.UI.RadButton();
+            this.radButtonTaxRegister = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.objectListViewInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxSearch)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
@@ -58,6 +60,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonAddInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonDeleteInvoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonTaxRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,6 +106,7 @@
             this.objectListViewInvoices.UseCompatibleStateImageBehavior = false;
             this.objectListViewInvoices.UseFiltering = true;
             this.objectListViewInvoices.View = System.Windows.Forms.View.Details;
+            this.objectListViewInvoices.SelectedIndexChanged += new System.EventHandler(this.objectListViewInvoices_SelectedIndexChanged);
             this.objectListViewInvoices.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListViewInvoices_MouseDoubleClick);
             // 
             // InvoiceNo
@@ -239,43 +244,65 @@
             // 
             this.radButtonCustomers.Location = new System.Drawing.Point(30, 42);
             this.radButtonCustomers.Name = "radButtonCustomers";
-            this.radButtonCustomers.Size = new System.Drawing.Size(212, 40);
+            this.radButtonCustomers.Size = new System.Drawing.Size(154, 40);
             this.radButtonCustomers.TabIndex = 6;
             this.radButtonCustomers.Text = "Klienci";
             this.radButtonCustomers.Click += new System.EventHandler(this.radButtonCustomers_Click);
             // 
             // radButtonProducts
             // 
-            this.radButtonProducts.Location = new System.Drawing.Point(266, 42);
+            this.radButtonProducts.Location = new System.Drawing.Point(190, 42);
             this.radButtonProducts.Name = "radButtonProducts";
-            this.radButtonProducts.Size = new System.Drawing.Size(212, 40);
+            this.radButtonProducts.Size = new System.Drawing.Size(154, 40);
             this.radButtonProducts.TabIndex = 7;
             this.radButtonProducts.Text = "Produkty";
             this.radButtonProducts.Click += new System.EventHandler(this.radButtonProducts_Click);
             // 
             // radButtonAddInvoice
             // 
-            this.radButtonAddInvoice.Location = new System.Drawing.Point(501, 42);
+            this.radButtonAddInvoice.Location = new System.Drawing.Point(350, 42);
             this.radButtonAddInvoice.Name = "radButtonAddInvoice";
-            this.radButtonAddInvoice.Size = new System.Drawing.Size(212, 40);
+            this.radButtonAddInvoice.Size = new System.Drawing.Size(154, 40);
             this.radButtonAddInvoice.TabIndex = 8;
             this.radButtonAddInvoice.Text = "Dodaj fakturę";
             this.radButtonAddInvoice.Click += new System.EventHandler(this.radButtonAddInvoice_Click);
             // 
             // radButtonPrint
             // 
-            this.radButtonPrint.Location = new System.Drawing.Point(735, 42);
+            this.radButtonPrint.Enabled = false;
+            this.radButtonPrint.Location = new System.Drawing.Point(670, 42);
             this.radButtonPrint.Name = "radButtonPrint";
-            this.radButtonPrint.Size = new System.Drawing.Size(212, 40);
+            this.radButtonPrint.Size = new System.Drawing.Size(154, 40);
             this.radButtonPrint.TabIndex = 9;
             this.radButtonPrint.Text = "Drukuj";
             this.radButtonPrint.Click += new System.EventHandler(this.radButtonPrint_Click);
+            // 
+            // radButtonDeleteInvoice
+            // 
+            this.radButtonDeleteInvoice.Enabled = false;
+            this.radButtonDeleteInvoice.Location = new System.Drawing.Point(510, 42);
+            this.radButtonDeleteInvoice.Name = "radButtonDeleteInvoice";
+            this.radButtonDeleteInvoice.Size = new System.Drawing.Size(154, 40);
+            this.radButtonDeleteInvoice.TabIndex = 10;
+            this.radButtonDeleteInvoice.Text = "Usuń fakturę";
+            this.radButtonDeleteInvoice.Click += new System.EventHandler(this.radButtonDeleteInvoice_Click);
+            // 
+            // radButtonTaxRegister
+            // 
+            this.radButtonTaxRegister.Location = new System.Drawing.Point(830, 42);
+            this.radButtonTaxRegister.Name = "radButtonTaxRegister";
+            this.radButtonTaxRegister.Size = new System.Drawing.Size(154, 40);
+            this.radButtonTaxRegister.TabIndex = 11;
+            this.radButtonTaxRegister.Text = "Rejestr VAT";
+            this.radButtonTaxRegister.Click += new System.EventHandler(this.radButtonTaxRegister_Click);
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 651);
+            this.Controls.Add(this.radButtonTaxRegister);
+            this.Controls.Add(this.radButtonDeleteInvoice);
             this.Controls.Add(this.radButtonPrint);
             this.Controls.Add(this.radButtonAddInvoice);
             this.Controls.Add(this.radButtonProducts);
@@ -301,6 +328,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonAddInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonDeleteInvoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonTaxRegister)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -309,7 +338,7 @@
 
         #endregion
 
-        private BrightIdeasSoftware.ObjectListView objectListViewInvoices;
+        public BrightIdeasSoftware.ObjectListView objectListViewInvoices;
         private BrightIdeasSoftware.OLVColumn InvoiceNo;
         private BrightIdeasSoftware.OLVColumn comCity;
         private BrightIdeasSoftware.OLVColumn IssuedBy;
@@ -331,5 +360,7 @@
         private Telerik.WinControls.UI.RadButton radButtonProducts;
         private Telerik.WinControls.UI.RadButton radButtonAddInvoice;
         private Telerik.WinControls.UI.RadButton radButtonPrint;
+        private Telerik.WinControls.UI.RadButton radButtonDeleteInvoice;
+        private Telerik.WinControls.UI.RadButton radButtonTaxRegister;
     }
 }

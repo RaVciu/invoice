@@ -61,6 +61,7 @@ namespace Rejestr_Faktur
 
         private void radButtonSave_Click(object sender, EventArgs e)
         {
+
             string cusCompanyName = radRichTextEditor_cusCompanyName.Text;
             string cusAddress = radTextBox_cusAddress.Text;
             string cusCity = radTextBox_cusCity.Text;
@@ -74,67 +75,115 @@ namespace Rejestr_Faktur
             string IssuedBy = radTextBoxIssuedBy.Text;
             string PaymentMethod = comboBoxPaymentMethod.SelectedItem.ToString();
             string Sum = (radLabelGrossSum.Text).Replace(",", ".");
-
+            string QueryDeleteTaxDetails = "DELETE FROM TaxDetails WHERE InvoiceID = " + InvoiceID + "";
             string QueryDeleteInvoiceDetails = "DELETE FROM InvoiceDetails WHERE InvoiceID = "+InvoiceID+"";
+            SqlCommand cmdDeleteInvD = new SqlCommand(QueryDeleteInvoiceDetails, connection);
+            SqlCommand cmdDeleteTaxDetails = new SqlCommand(QueryDeleteTaxDetails, connection);
 
-            if (radCheckBoxCustomerAdd.Checked)
+            try
             {
-                string QueryCustomer = "INSERT INTO Customers (CompanyName, Address, City, PostalCode, NIP) VALUES ('" + cusCompanyName + "', '" + cusAddress + "', '" + cusCity + "', '" + cusPostalCode + "', '" + cusNIP + "') SELECT SCOPE_IDENTITY()";
-                SqlCommand cmd = new SqlCommand(QueryCustomer, connection);
-                connection.Open();
-                CustomerID = cmd.ExecuteScalar().ToString();
-                connection.Close();
-                string QueryUpdateInvoice = "UPDATE Invoices SET InvoiceNo = '" + InvoiceNo + "', CustomerID = '" + CustomerID + "', IssuedBy = '" + IssuedBy + "', OrderDate = @OrderDate, InvoiceDate = @InvoiceDate, PaymentDate = @PaymentDate, PaymentMethod = '" + PaymentMethod + "', CompanyName = '" + cusCompanyName + "', Address = '" + cusAddress + "', City = '" + cusCity + "', PostalCode = '" + cusPostalCode + "', NIP = '" + cusNIP + "', Sum = " + Sum + " WHERE InvoiceID = " + InvoiceID + "";
-                SqlCommand cmdUpdateInv = new SqlCommand(QueryUpdateInvoice, connection);
-                SqlCommand cmdDeleteInvD = new SqlCommand(QueryDeleteInvoiceDetails, connection);
-                connection.Open();
-                cmdUpdateInv.Parameters.Add("@OrderDate", SqlDbType.Date).Value = dateTimePickerOrderDate.Value.Date;
-                cmdUpdateInv.Parameters.Add("@InvoiceDate", SqlDbType.Date).Value = dateTimePickerInvoiceDate.Value.Date;
-                cmdUpdateInv.Parameters.Add("@PaymentDate", SqlDbType.Date).Value = dateTimePickerPaymentDate.Value.Date;
-                cmdUpdateInv.ExecuteNonQuery();
-                cmdDeleteInvD.ExecuteNonQuery();
-                connection.Close();
-            }
-            else
-            {
-                string QueryUpdateInvoice = "UPDATE Invoices SET InvoiceNo = '" + InvoiceNo + "', CustomerID = "+CustomerID+", IssuedBy = '" + IssuedBy + "', OrderDate = @OrderDate, InvoiceDate = @InvoiceDate, PaymentDate = @PaymentDate, PaymentMethod = '" + PaymentMethod + "', CompanyName = '" + cusCompanyName + "', Address = '" + cusAddress + "', City = '" + cusCity + "', PostalCode = '" + cusPostalCode + "', NIP = '" + cusNIP + "', Sum = " + Sum + " WHERE InvoiceID = " + InvoiceID + "";
-                SqlCommand cmdUpdateInv = new SqlCommand(QueryUpdateInvoice, connection);
-                SqlCommand cmdDeleteInvD = new SqlCommand(QueryDeleteInvoiceDetails, connection);
-                connection.Open();
-                cmdUpdateInv.Parameters.Add("@OrderDate", SqlDbType.Date).Value = dateTimePickerOrderDate.Value.Date;
-                cmdUpdateInv.Parameters.Add("@InvoiceDate", SqlDbType.Date).Value = dateTimePickerInvoiceDate.Value.Date;
-                cmdUpdateInv.Parameters.Add("@PaymentDate", SqlDbType.Date).Value = dateTimePickerPaymentDate.Value.Date;
-                cmdUpdateInv.ExecuteNonQuery();
-                cmdDeleteInvD.ExecuteNonQuery();
-                connection.Close();
-            }
-            foreach (InvoiceDetails invd in objectListViewInvoiceDetails.Objects)
-            {
-                string ProductID;
-                if (invd.ProductID != "")
+                if (radCheckBoxCustomerAdd.Checked)
                 {
-                    ProductID = invd.ProductID;
-                }else { ProductID = "NULL"; }
+                    string QueryCustomer = "INSERT INTO Customers (CompanyName, Address, City, PostalCode, NIP) VALUES ('" + cusCompanyName + "', '" + cusAddress + "', '" + cusCity + "', '" + cusPostalCode + "', '" + cusNIP + "') SELECT SCOPE_IDENTITY()";
+                    SqlCommand cmd = new SqlCommand(QueryCustomer, connection);
+                    connection.Open();
+                    CustomerID = cmd.ExecuteScalar().ToString();
+                    connection.Close();
+                    string QueryUpdateInvoice = "UPDATE Invoices SET InvoiceNo = '" + InvoiceNo + "', CustomerID = '" + CustomerID + "', IssuedBy = '" + IssuedBy + "', OrderDate = @OrderDate, InvoiceDate = @InvoiceDate, PaymentDate = @PaymentDate, PaymentMethod = '" + PaymentMethod + "', CompanyName = '" + cusCompanyName + "', Address = '" + cusAddress + "', City = '" + cusCity + "', PostalCode = '" + cusPostalCode + "', NIP = '" + cusNIP + "', Sum = " + Sum + " WHERE InvoiceID = " + InvoiceID + "";
+                    SqlCommand cmdUpdateInv = new SqlCommand(QueryUpdateInvoice, connection);
+                    connection.Open();
+                    cmdUpdateInv.Parameters.Add("@OrderDate", SqlDbType.Date).Value = dateTimePickerOrderDate.Value.Date;
+                    cmdUpdateInv.Parameters.Add("@InvoiceDate", SqlDbType.Date).Value = dateTimePickerInvoiceDate.Value.Date;
+                    cmdUpdateInv.Parameters.Add("@PaymentDate", SqlDbType.Date).Value = dateTimePickerPaymentDate.Value.Date;
+                    cmdUpdateInv.ExecuteNonQuery();
+                    cmdDeleteInvD.ExecuteNonQuery();
+                    cmdDeleteTaxDetails.ExecuteNonQuery();
+                    connection.Close();
+                }
 
-                string ProductName = invd.ProductName;
-                string NetUnitPrice = invd.NetUnitPrice.ToString().Replace(",", ".");
-                string GrossUnitPrice = invd.GrossUnitPrice.ToString().Replace(",", ".");
-                string PKWiU = invd.PKWiU;
-                string Unit = invd.Unit;
-                string Tax = invd.Tax;
-                int Quantity = invd.Quantity;
-                string Discount = invd.Discount.ToString().Replace(",", ".");
-                string NetValue = invd.NetValue.ToString().Replace(",", ".");
-                string GrossValue = invd.GrossValue.ToString().Replace(",", ".");
-                string QueryAddInvoiceDetails = "INSERT INTO InvoiceDetails VALUES(" + InvoiceID + ", " + ProductID + ", '" + ProductName + "', " + NetUnitPrice + ", " + GrossUnitPrice + ", '" + PKWiU + "', '" + Unit + "', '" + Tax + "', '" + Quantity + "', " + Discount + ", " + NetValue + ", " + GrossValue + ")";
-                SqlCommand cmdAddInvD = new SqlCommand(QueryAddInvoiceDetails, connection);
-                connection.Open();
-                cmdAddInvD.ExecuteNonQuery();
-                connection.Close();
-                
-                this.Close();
+                else
+                {
+                    string QueryUpdateInvoice = "UPDATE Invoices SET InvoiceNo = '" + InvoiceNo + "', CustomerID = " + CustomerID + ", IssuedBy = '" + IssuedBy + "', OrderDate = @OrderDate, InvoiceDate = @InvoiceDate, PaymentDate = @PaymentDate, PaymentMethod = '" + PaymentMethod + "', CompanyName = '" + cusCompanyName + "', Address = '" + cusAddress + "', City = '" + cusCity + "', PostalCode = '" + cusPostalCode + "', NIP = '" + cusNIP + "', Sum = " + Sum + " WHERE InvoiceID = " + InvoiceID + "";
+                    SqlCommand cmdUpdateInv = new SqlCommand(QueryUpdateInvoice, connection);
+                    connection.Open();
+                    cmdUpdateInv.Parameters.Add("@OrderDate", SqlDbType.Date).Value = dateTimePickerOrderDate.Value.Date;
+                    cmdUpdateInv.Parameters.Add("@InvoiceDate", SqlDbType.Date).Value = dateTimePickerInvoiceDate.Value.Date;
+                    cmdUpdateInv.Parameters.Add("@PaymentDate", SqlDbType.Date).Value = dateTimePickerPaymentDate.Value.Date;
+                    cmdUpdateInv.ExecuteNonQuery();
+                    cmdDeleteInvD.ExecuteNonQuery();
+                    cmdDeleteTaxDetails.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                foreach (InvoiceDetails invd in objectListViewInvoiceDetails.Objects)
+                {
+                    string ProductID;
+                    if (invd.ProductID != "")
+                    {
+                        ProductID = invd.ProductID;
+                    }
+                    else { ProductID = "NULL"; }
+
+                    string ProductName = invd.ProductName;
+                    string NetUnitPrice = invd.NetUnitPrice.ToString().Replace(",", ".");
+                    string GrossUnitPrice = invd.GrossUnitPrice.ToString().Replace(",", ".");
+                    string PKWiU = invd.PKWiU;
+                    string Unit = invd.Unit;
+                    string Tax = invd.Tax;
+                    int Quantity = invd.Quantity;
+                    string Discount = invd.Discount.ToString().Replace(",", ".");
+                    string NetValue = invd.NetValue.ToString().Replace(",", ".");
+                    string GrossValue = invd.GrossValue.ToString().Replace(",", ".");
+                    string QueryAddInvoiceDetails = "INSERT INTO InvoiceDetails VALUES(" + InvoiceID + ", " + ProductID + ", '" + ProductName + "', " + NetUnitPrice + ", " + GrossUnitPrice + ", '" + PKWiU + "', '" + Unit + "', '" + Tax + "', '" + Quantity + "', " + Discount + ", " + NetValue + ", " + GrossValue + ")";
+                    SqlCommand cmdAddInvD = new SqlCommand(QueryAddInvoiceDetails, connection);
+                    connection.Open();
+                    cmdAddInvD.ExecuteNonQuery();
+                    connection.Close();
+
+                    this.Close();
+                }
+
+                foreach (TaxList taxl in objectListViewTaxList.Objects)
+                {
+                    string TaxName = taxl.TaxName.ToString();
+                    string Tax = taxl.TaxName.ToString();
+                    string NetValue = taxl.NetValue.ToString().Replace(",", ".");
+                    string TaxValue = taxl.TaxValue.ToString().Replace(",", ".");
+                    string GrossValue = taxl.GrossValue.ToString().Replace(",", ".");
+                    string QueryTaxDetails = "INSERT INTO TaxDetails VALUES(" + InvoiceID + ", '" + TaxName + "','" + Tax + "', " + NetValue + ", " + TaxValue + ", " + GrossValue + ")";
+                    SqlCommand cmd = new SqlCommand(QueryTaxDetails, connection);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                MessageBox.Show("Pomyślnie edytowano fakturę");
             }
-            MessageBox.Show("Pomyślnie edytowano fakturę");
+            catch { MessageBox.Show("Niepoprawny format danych bądź występują puste pola"); }
+        }
+
+        private void radButtonEditInvoiceDetail_Click(object sender, EventArgs e)
+        {
+            EditInvoiceDetails editInvD = new EditInvoiceDetails();
+            editInvD.radTextBoxProductName.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).ProductName;
+            editInvD.radTextBoxPKWiU.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).PKWiU;
+            editInvD.radTextBoxUnit.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).Unit;
+            editInvD.radTextBoxQuantity.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).Quantity.ToString();
+            editInvD.radTextBoxNetUnitPrice.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).NetUnitPrice.ToString();
+            editInvD.radTextBoxGrossUnitPrice.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).GrossUnitPrice.ToString();
+            editInvD.radTextBoxDiscount.Text = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).Discount.ToString();
+            editInvD.Old_Ordinal = ((InvoiceDetails)objectListViewInvoiceDetails.SelectedObject).Ordinal;
+            editInvD.SelectedObjectIndex = objectListViewInvoiceDetails.SelectedIndex;
+            editInvD.Owner = this;
+            editInvD.Show();
+        }
+
+        private void objectListViewInvoiceDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(objectListViewInvoiceDetails.SelectedObjects.Count > 0)
+            {
+                radButtonEditInvoiceDetail.Enabled = true;
+            }
+            else { radButtonEditInvoiceDetail.Enabled = false; }
         }
 
         private void radButtonCancel_Click(object sender, EventArgs e)
@@ -152,14 +201,14 @@ namespace Rejestr_Faktur
         
         private void EditInvoice_Load(object sender, EventArgs e)
         {
-
+            radButtonEditInvoiceDetail.Enabled = false;
             string QueryLoadInvoice = "SELECT inv.InvoiceID, inv.InvoiceNo, inv.CompanyID, inv.CustomerID, inv.IssuedBy, inv.OrderDate, inv.InvoiceDate, inv.PaymentDate, inv.PaymentMethod, inv.CompanyName, inv.Address, inv.City, inv.PostalCode, inv.NIP, inv.Sum, com.City, com.IBAN FROM Invoices as inv JOIN Company as com ON com.CompanyID = inv.CompanyID WHERE InvoiceID = " + InvoiceID+"";
             connection.Open();
-            SqlDataAdapter da = new SqlDataAdapter(QueryLoadInvoice, connection);
+            SqlDataAdapter daInv = new SqlDataAdapter(QueryLoadInvoice, connection);
             connection.Close();
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            foreach (DataRow row in ds.Tables[0].Rows)
+            DataSet dsInv = new DataSet();
+            daInv.Fill(dsInv);
+            foreach (DataRow row in dsInv.Tables[0].Rows)
             {
                 InvoiceID = int.Parse(row[0].ToString());
                 InvoiceNo = row[1].ToString();
@@ -197,16 +246,16 @@ namespace Rejestr_Faktur
 
             string QueryLoadInvoiceDetails = "SELECT ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, Tax, Quantity, Discount, NetValue, GrossValue FROM InvoiceDetails WHERE InvoiceID = " + InvoiceID + "";
             connection.Open();
-            SqlDataAdapter da2 = new SqlDataAdapter(QueryLoadInvoiceDetails, connection);
+            SqlDataAdapter daInvD = new SqlDataAdapter(QueryLoadInvoiceDetails, connection);
             connection.Close();
-            DataSet ds2 = new DataSet();
-            da2.Fill(ds2);
+            DataSet dsInvD = new DataSet();
+            daInvD.Fill(dsInvD);
 
             int Quantity;
             int Ordinal = 0;
             string ProductName, PKWiU, Unit, Tax, ProductID;
             decimal NetUnitPrice, GrossUnitPrice, Discount, NetValue, GrossValue;
-            foreach(DataRow row in ds2.Tables[0].Rows)
+            foreach(DataRow row in dsInvD.Tables[0].Rows)
             {
                 ProductID = row[0].ToString();
                 ProductName = row[1].ToString();
@@ -222,6 +271,8 @@ namespace Rejestr_Faktur
                 Ordinal += 1;
                 objectListViewInvoiceDetails.AddObject(new InvoiceDetails(Ordinal, ProductID, ProductName, NetUnitPrice, GrossUnitPrice, PKWiU, Unit, Tax, Quantity, Discount, NetValue, GrossValue));
             }
+
+            
         }
         int Ordinal = 0;
         private void objectListViewInvoiceDetails_ItemsChanged(object sender, ItemsChangedEventArgs e)

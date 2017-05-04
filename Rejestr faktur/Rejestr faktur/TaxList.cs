@@ -12,6 +12,7 @@ namespace Rejestr_Faktur
         public TaxList(string TaxName, string Tax,decimal NetValue, decimal TaxValue, decimal GrossValue)
         {
             this.TaxName = TaxName;
+            this.Tax = Tax;
             this.NetValue = NetValue;
             this.TaxValue = TaxValue;
             this.GrossValue = GrossValue;
@@ -29,7 +30,7 @@ namespace Rejestr_Faktur
         [OLVColumn("Wart. brutto [zł]", Width = 100, TextAlign = System.Windows.Forms.HorizontalAlignment.Right)]
         public decimal GrossValue { get; set; }
 
-        [OLVColumn (IsVisible = false)]
+        [OLVColumn ("VAT %", IsVisible = true)]
         public string Tax { get; set; }
     }
 }

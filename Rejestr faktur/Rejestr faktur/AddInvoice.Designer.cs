@@ -480,6 +480,7 @@
             this.objectListViewInvoiceDetails.UseCompatibleStateImageBehavior = false;
             this.objectListViewInvoiceDetails.View = System.Windows.Forms.View.Details;
             this.objectListViewInvoiceDetails.ItemsChanged += new System.EventHandler<BrightIdeasSoftware.ItemsChangedEventArgs>(this.objectListViewInvoiceDetails_ItemsChanged);
+            this.objectListViewInvoiceDetails.SelectedIndexChanged += new System.EventHandler(this.objectListViewInvoiceDetails_SelectedIndexChanged);
             // 
             // radButtonAddInvoiceDetail
             // 
@@ -497,6 +498,7 @@
             this.radButtonEditInvoiceDetail.Size = new System.Drawing.Size(95, 52);
             this.radButtonEditInvoiceDetail.TabIndex = 9;
             this.radButtonEditInvoiceDetail.Text = "Zmień";
+            this.radButtonEditInvoiceDetail.Click += new System.EventHandler(this.radButtonEditInvoiceDetail_Click);
             // 
             // radButtonDeleteInvoiceDetail
             // 

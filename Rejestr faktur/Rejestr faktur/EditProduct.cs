@@ -47,15 +47,17 @@ namespace Rejestr_Faktur
             PKWiU = radTextBoxPKWiU.Text;
             Unit = radTextBoxUnit.Text;
 
-
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            string EditProductQuery = "UPDATE Products SET ProductName = '" + ProductName + "', NetUnitPrice = " + NetUnitPrice + ", GrossUnitPrice = "+GrossUnitPrice+" ,PKWiU = '" + PKWiU + "', Unit = '" + Unit + "', Tax = '" + Tax + "' WHERE ProductID = '"+ProductID+"'";
-            SqlCommand cmd = new SqlCommand(EditProductQuery, connection);
-            cmd.ExecuteNonQuery();
-            connection.Close();
-            this.Close();
-
+            try
+            {
+                SqlConnection connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                string EditProductQuery = "UPDATE Products SET ProductName = '" + ProductName + "', NetUnitPrice = " + NetUnitPrice + ", GrossUnitPrice = " + GrossUnitPrice + " ,PKWiU = '" + PKWiU + "', Unit = '" + Unit + "', Tax = '" + Tax + "' WHERE ProductID = '" + ProductID + "'";
+                SqlCommand cmd = new SqlCommand(EditProductQuery, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+                this.Close();
+            }
+            catch { MessageBox.Show("Niepoprawny format danych bądź występują puste pola"); }
         }
 
 

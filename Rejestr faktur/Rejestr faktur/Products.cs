@@ -107,10 +107,17 @@ namespace Rejestr_Faktur
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
-            string DeleteProductQuery = "DELETE FROM Products WHERE ProductID = '"+((Product)objectListViewProducts.SelectedObject).ProductID+"'";
-            SqlCommand command = new SqlCommand(DeleteProductQuery, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
+            foreach (Product prod in objectListViewProducts.SelectedObjects)
+            {
+                try
+                {
+                    string DeleteProductQuery = "DELETE FROM Products WHERE ProductID = '" + prod.ProductID + "'";
+                    SqlCommand command = new SqlCommand(DeleteProductQuery, connection);
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch { MessageBox.Show("Nie można usunąć produktu który jest wpisem w fakturze"); }
+            }
             Reload_objectListViewProducts();
         }
     }

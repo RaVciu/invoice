@@ -23,6 +23,8 @@ namespace Rejestr_Faktur
         private void Rejestr_Load(object sender, EventArgs e)
         {
             Reload_objectListViewInvoices();
+            radButtonPrint.Enabled = false;
+            radButtonDeleteInvoice.Enabled = false;
         }
 
             
@@ -98,7 +100,47 @@ namespace Rejestr_Faktur
         private void radButtonPrint_Click(object sender, EventArgs e)
         {
             PrintInvoice print = new PrintInvoice();
+            print.InvoiceID = ((Invoice)objectListViewInvoices.SelectedObject).InvoiceID;
             print.Show();
+        }
+
+        private void objectListViewInvoices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (objectListViewInvoices.SelectedObjects.Count > 0)
+            {
+                radButtonPrint.Enabled = true;
+                radButtonDeleteInvoice.Enabled = true;
+            }
+            else
+            {
+                radButtonPrint.Enabled = false;
+                radButtonDeleteInvoice.Enabled = false;
+            }
+        }
+
+        private void radButtonDeleteInvoice_Click(object sender, EventArgs e)
+        {
+            int InvoiceID = ((Invoice)objectListViewInvoices.SelectedObject).InvoiceID;
+            string QueryDeleteInvoiceDetails = "DELETE FROM InvoiceDetails WHERE InvoiceID = " + InvoiceID + "";
+            string QueryDeleteTaxDetails = "DELETE FROM TaxDetails WHERE InvoiceID = " + InvoiceID + "";
+            string QueryDeleteInvoice = "DELETE FROM Invoices WHERE InvoiceID = " + InvoiceID + "";
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            SqlCommand cmdDeleteInvD = new SqlCommand(QueryDeleteInvoiceDetails, connection);
+            SqlCommand cmdDeleteTaxD = new SqlCommand(QueryDeleteTaxDetails, connection);
+            SqlCommand cmdDeleteInv = new SqlCommand(QueryDeleteInvoice, connection);
+            connection.Open();
+            cmdDeleteInvD.ExecuteNonQuery();
+            cmdDeleteTaxD.ExecuteNonQuery();
+            cmdDeleteInv.ExecuteNonQuery();
+            connection.Close();
+            Reload_objectListViewInvoices();
+        }
+
+        private void radButtonTaxRegister_Click(object sender, EventArgs e)
+        {
+            TaxRegister TaxR = new TaxRegister();
+            TaxR.Owner = this;
+            TaxR.Show();
         }
     }
 }
